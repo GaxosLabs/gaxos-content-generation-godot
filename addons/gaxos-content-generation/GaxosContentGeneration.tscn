@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://23adfrbspyrm"]
+
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/gaxos_content_generation.gd" id="1_hdwqe"]
+
+[node name="GaxosContentGeneration" type="Node"]
+script = ExtResource("1_hdwqe")
