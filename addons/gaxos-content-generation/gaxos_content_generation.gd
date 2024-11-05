@@ -5,8 +5,8 @@ signal error(code, status, message)
 
 const CONFIGURATION_FILE : String = "res://addons/gaxos-content-generation/.env"
 
-#var BASE_URL : String = "https://dev.gaxoslabs.ai/api/connect/v1/"
-var BASE_URL : String = "https://gaxoslabs.ai/api/connect/v1/";
+var BASE_URL : String = "https://dev.gaxoslabs.ai/api/connect/v1/"
+#var BASE_URL : String = "https://gaxoslabs.ai/api/connect/v1/";
 
 var _headers : PackedStringArray = [
 	"Content-Type: application/json",

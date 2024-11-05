@@ -1,0 +1,701 @@
+[gd_scene load_steps=28 format=3 uid="uid://db6gkh1ot38m6"]
+
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
+[ext_resource type="Texture2D" uid="uid://ch48fiec0s03y" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon - blue.png" id="1_jwp27"]
+[ext_resource type="Texture2D" uid="uid://bay6xpejlfjin" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon.png" id="1_rvamv"]
+[ext_resource type="FontFile" uid="uid://drvnuvw8heyr" path="res://addons/gaxos-content-generation/window/Bebas Neue Pro Regular.otf" id="2_jpljm"]
+[ext_resource type="Texture2D" uid="uid://dafmy6ngxm0u8" path="res://addons/gaxos-content-generation/window/separator.png" id="3_r04pj"]
+[ext_resource type="LabelSettings" uid="uid://cxunv2mwuq2n4" path="res://addons/gaxos-content-generation/window/Subwindow title Label.tres" id="4_wm25m"]
+[ext_resource type="ButtonGroup" uid="uid://ca00jdok1pcy6" path="res://addons/gaxos-content-generation/window/main_tab_button_group.tres" id="4_xwa81"]
+[ext_resource type="Texture2D" uid="uid://4e46tg81b8eo" path="res://addons/gaxos-content-generation/window/Dall-E.png" id="5_meie6"]
+[ext_resource type="Texture2D" uid="uid://desdyd33uf6vr" path="res://addons/gaxos-content-generation/window/Stability AI.png" id="6_xvpw1"]
+[ext_resource type="Texture2D" uid="uid://guug1r165o02" path="res://addons/gaxos-content-generation/window/Meshy.png" id="7_j3ipm"]
+[ext_resource type="Texture2D" uid="uid://dkharlfh6t646" path="res://addons/gaxos-content-generation/window/Dall-E - blue.png" id="7_oekmt"]
+[ext_resource type="Texture2D" uid="uid://ban71l2mn4nhp" path="res://addons/gaxos-content-generation/window/Suno.png" id="8_cv0ey"]
+[ext_resource type="Texture2D" uid="uid://dy0exqhtp0vbe" path="res://addons/gaxos-content-generation/window/Eleven Labs.png" id="9_3r7qk"]
+[ext_resource type="Texture2D" uid="uid://dqj8js0fau27e" path="res://addons/gaxos-content-generation/window/Stability AI - blue.png" id="9_os25a"]
+[ext_resource type="Texture2D" uid="uid://bmcmogkyftg10" path="res://addons/gaxos-content-generation/window/Multiple Text To Image.png" id="10_tpjbx"]
+[ext_resource type="Texture2D" uid="uid://cu5031pi7wah7" path="res://addons/gaxos-content-generation/window/Meshy - blue.png" id="11_dpmk4"]
+[ext_resource type="Texture2D" uid="uid://g43l6qfkdd8n" path="res://addons/gaxos-content-generation/window/Multiple Masking.png" id="11_tsrcb"]
+[ext_resource type="Texture2D" uid="uid://c6vvo7gl2wg4q" path="res://addons/gaxos-content-generation/window/Basic Examples.png" id="12_67rai"]
+[ext_resource type="Texture2D" uid="uid://c0iq4r2otl3aw" path="res://addons/gaxos-content-generation/window/Suno - blue.png" id="13_ew45x"]
+[ext_resource type="Texture2D" uid="uid://dq1mh4c1uy77" path="res://addons/gaxos-content-generation/window/Configuration.png" id="13_wne1l"]
+[ext_resource type="Texture2D" uid="uid://h3wqtjfailce" path="res://addons/gaxos-content-generation/window/Eleven Labs - blue.png" id="15_mbxyg"]
+[ext_resource type="Texture2D" uid="uid://8xj255qnwpbk" path="res://addons/gaxos-content-generation/window/Multiple Text To Image - blue.png" id="17_jfbjo"]
+[ext_resource type="Texture2D" uid="uid://dlyec1w4asblb" path="res://addons/gaxos-content-generation/window/Multiple Masking - blue.png" id="19_1xhha"]
+[ext_resource type="Texture2D" uid="uid://deb1glljwq5wd" path="res://addons/gaxos-content-generation/window/Gaxos Labs AI.png" id="22_mk8tw"]
+[ext_resource type="Texture2D" uid="uid://dx8xqucjb1mlb" path="res://addons/gaxos-content-generation/window/Requests List.png" id="23_f4h3q"]
+[ext_resource type="Texture2D" uid="uid://377gowrkwa0x" path="res://addons/gaxos-content-generation/window/Favorites List.png" id="24_2ewli"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6wjs"]
+font = ExtResource("2_jpljm")
+font_size = 21
+font_color = Color(0, 0.945098, 1, 1)
+
+[node name="Gaxos Content Generation" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 826.0
+offset_bottom = 828.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_i1xbe")
+
+[node name="Root" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SideMenu" type="VBoxContainer" parent="Root"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Header" type="HBoxContainer" parent="Root/SideMenu"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 7
+
+[node name="Image" type="TextureRect" parent="Root/SideMenu/Header"]
+layout_mode = 2
+texture = ExtResource("1_jwp27")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Title" type="VBoxContainer" parent="Root/SideMenu/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="Title" type="Label" parent="Root/SideMenu/Header/Title"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "AI Content Generation"
+label_settings = SubResource("LabelSettings_g6wjs")
+horizontal_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/Header/Title"]
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+
+[node name="SideMenuScroll" type="ScrollContainer" parent="Root/SideMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="SideMenu" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 12
+
+[node name="Credits" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
+layout_mode = 2
+text = "Credits"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TextEdit" type="TextEdit" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+placeholder_text = "Credits"
+editable = false
+
+[node name="Generate Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content"]
+layout_mode = 2
+text = "Generate Content"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="Generators" type="GridContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="Gaxos" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("1_rvamv")
+texture_pressed = ExtResource("1_jwp27")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="DallE" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("5_meie6")
+texture_pressed = ExtResource("7_oekmt")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Stability" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("6_xvpw1")
+texture_pressed = ExtResource("9_os25a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Meshy" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("7_j3ipm")
+texture_pressed = ExtResource("11_dpmk4")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Suno" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("8_cv0ey")
+texture_pressed = ExtResource("13_ew45x")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="ElevenLabs" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("9_3r7qk")
+texture_pressed = ExtResource("15_mbxyg")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Generate Multiple Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content"]
+layout_mode = 2
+text = "Generate Multiple Content"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="Generators" type="GridContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 20
+columns = 3
+
+[node name="Multi Text To Image" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("10_tpjbx")
+texture_pressed = ExtResource("17_jfbjo")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Multi Masking" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+texture_normal = ExtResource("11_tsrcb")
+texture_pressed = ExtResource("19_1xhha")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Requests List" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Requests List"]
+layout_mode = 2
+text = "Requests List"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Requests List"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Requests List"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+text = "Requests List"
+icon = ExtResource("10_tpjbx")
+expand_icon = true
+
+[node name="Favorites List" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
+layout_mode = 2
+text = "Favorites List"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+text = "Favorites List"
+icon = ExtResource("11_tsrcb")
+expand_icon = true
+
+[node name="Basic Examples" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples"]
+layout_mode = 2
+text = "Basic Examples"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+text = "Basic Examples"
+icon = ExtResource("12_67rai")
+expand_icon = true
+
+[node name="Settings" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Settings"]
+layout_mode = 2
+text = "Settings"
+label_settings = ExtResource("4_wm25m")
+
+[node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Settings"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Settings"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("4_xwa81")
+text = "Settings"
+icon = ExtResource("13_wne1l")
+expand_icon = true
+
+[node name="Gaxos" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Gaxos"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Gaxos/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("22_mk8tw")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Gaxos/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Gaxos Labs AI"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Gaxos"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Gaxos"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Dall-E" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Dall-E"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Dall-E/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("5_meie6")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Dall-E/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Dall-E"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Dall-E"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Dall-E"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Stability AI" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Stability AI"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Stability AI/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("6_xvpw1")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Stability AI/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Stability AI"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Stability AI"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Stability AI"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Meshy" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Meshy"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Meshy/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("7_j3ipm")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Meshy/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Meshy"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Meshy"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Meshy"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Suno" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Suno"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Suno/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("8_cv0ey")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Suno/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Suno"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Suno"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Suno"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Eleven Labs" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Eleven Labs"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Eleven Labs/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("9_3r7qk")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Eleven Labs/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Eleven Labs"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Eleven Labs"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Eleven Labs"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Multiple Text To Image" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Multiple Text To Image"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Multiple Text To Image/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("10_tpjbx")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Multiple Text To Image/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Multiple Text To Image"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Multiple Text To Image"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Multiple Text To Image"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Multiple Masking" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Multiple Masking"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Multiple Masking/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("11_tsrcb")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Multiple Masking/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Multiple Masking"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Multiple Masking"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Multiple Masking"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Requests List" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Requests List"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Requests List/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("23_f4h3q")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Requests List/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Requests List"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Requests List"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Requests List"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Favorites List" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Favorites List"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Favorites List/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("24_2ewli")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Favorites List/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Favorites Lists"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Favorites List"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Favorites List"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Basic Examples" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Basic Examples"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Basic Examples/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("12_67rai")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Basic Examples/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Basic Examples"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Basic Examples"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Basic Examples"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Configuration" type="VBoxContainer" parent="Root"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Header" type="HBoxContainer" parent="Root/Configuration"]
+layout_mode = 2
+
+[node name="Image" type="TextureRect" parent="Root/Configuration/Header"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+texture = ExtResource("13_wne1l")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="Root/Configuration/Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Configuration"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Separator" type="TextureRect" parent="Root/Configuration"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+expand_mode = 2
+
+[node name="TabContainer" type="TabContainer" parent="Root/Configuration"]
+layout_mode = 2
+size_flags_vertical = 3
