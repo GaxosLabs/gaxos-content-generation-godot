@@ -30,12 +30,8 @@ func _ready() -> void:
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Settings/Button".pressed.connect(func (): self._show_subwindow(11))
 	
 func _show_subwindow(subwindow_index: int) -> void:
-	print("_show_subwindow: " +  str(subwindow_index))
 	for i in subwindows.size():
 		if i == subwindow_index:
 			subwindows[i].show()
 		else:
 			subwindows[i].hide()
-
-func _process(delta: float) -> void:
-	pass
