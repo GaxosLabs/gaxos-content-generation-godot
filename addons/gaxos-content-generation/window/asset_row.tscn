@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvo8x3r4dt1qb"]
+
+[ext_resource type="Texture2D" uid="uid://377gowrkwa0x" path="res://addons/gaxos-content-generation/window/Favorites List.png" id="1_85x2h"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/asset_row.gd" id="1_yruwi"]
+
+[node name="AssetRow" type="VBoxContainer"]
+script = ExtResource("1_yruwi")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("1_85x2h")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "Save to project"
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Save asset"
+initial_position = 2
+size = Vector2i(486, 400)
+dialog_hide_on_ok = true
+access = 2

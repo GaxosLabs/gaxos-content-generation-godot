@@ -15,6 +15,8 @@ func send_request(url: String, custom_headers: PackedStringArray = PackedStringA
 	request_completed.connect(
 		func(result, response_code, headers, body): 
 			data = body.get_string_from_utf8()	
+			if response_code != 200:
+				printerr(method, " ", url, "\n", custom_headers, "\n\n", request_data, "\n\n===============\n",  response_code, "\n", headers, "\n", data)
 			task_finished.emit()
 			queue_free()
 	)

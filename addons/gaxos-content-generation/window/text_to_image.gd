@@ -16,10 +16,11 @@ func _generate() -> void:
 	await GaxosContentGeneration.request_generation(
 		"stability-text-to-image",
 		{
-			text_prompts = {
+			engine_id = "stable-diffusion-v1-6",
+			text_prompts = [{
 				text = $VBoxContainer/Prompt.text,
 				weight = 1
-			},
+			}],
 			width = 512,
 			height = 512
 		},
@@ -34,10 +35,11 @@ func _refresh_code() -> void:
 	$VBoxContainer/Code.text = "await GaxosContentGeneration.request_generation(\n" + \
 		"\"stability-text-to-image\",\n" + \
 		"{\n" + \
-		"	text_prompts = {\n" + \
+		"	engine_id = \"stable-diffusion-v1-6\",\n" + \
+		"	text_prompts = [{\n" + \
 		"		text = \"" + $VBoxContainer/Prompt.text + "\",\n" + \
 		"		weight = 1\n" + \
-		"	},\n" + \
+		"	}],\n" + \
 		"	width = 512,\n" + \
 		"	height = 512\n" + \
 		"},\n" + \

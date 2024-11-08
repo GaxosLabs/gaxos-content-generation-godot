@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwb0mrergp3yi"]
+
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/request_row.gd" id="1_kw72m"]
+[ext_resource type="Texture2D" uid="uid://c0am7sio54ei4" path="res://addons/gaxos-content-generation/window/download.png" id="1_x6028"]
+
+[node name="RequestRow" type="HBoxContainer"]
+script = ExtResource("1_kw72m")
+
+[node name="Id" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Id"
+
+[node name="Generator" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Generator"
+
+[node name="Created" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Created"
+
+[node name="Completed" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Completed"
+
+[node name="Time taken" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Time taken"
+
+[node name="Cost" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Cost"
+
+[node name="Status" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Status"
+
+[node name="Download" type="TextureButton" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+texture_normal = ExtResource("1_x6028")
+ignore_texture_size = true
+stretch_mode = 5

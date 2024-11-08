@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=36 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
 [ext_resource type="Texture2D" uid="uid://ch48fiec0s03y" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon - blue.png" id="1_jwp27"]
@@ -28,6 +28,8 @@
 [ext_resource type="Texture2D" uid="uid://deb1glljwq5wd" path="res://addons/gaxos-content-generation/window/Gaxos Labs AI.png" id="22_mk8tw"]
 [ext_resource type="Texture2D" uid="uid://dx8xqucjb1mlb" path="res://addons/gaxos-content-generation/window/Requests List.png" id="23_f4h3q"]
 [ext_resource type="Texture2D" uid="uid://377gowrkwa0x" path="res://addons/gaxos-content-generation/window/Favorites List.png" id="24_2ewli"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/requests_list.gd" id="27_m4e82"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/details_container.gd" id="29_bu5g2"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/configuration_contents.gd" id="29_j3m84"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/api_key_container.gd" id="29_ko3yr"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/text_to_image.gd" id="29_tl33q"]
@@ -43,8 +45,8 @@ font_color = Color(1, 0.229536, 0.174185, 1)
 [node name="Gaxos Content Generation" type="Control"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 826.0
-offset_bottom = 828.0
+offset_right = 2167.0
+offset_bottom = 1372.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_i1xbe")
@@ -122,6 +124,7 @@ script = ExtResource("6_bathn")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+text = "5077.10414844132 / 7178"
 placeholder_text = "Credits"
 editable = false
 
@@ -133,6 +136,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Generate Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content"]
@@ -215,6 +219,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Generate Multiple Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content"]
@@ -280,6 +285,7 @@ icon = ExtResource("10_tpjbx")
 expand_icon = true
 
 [node name="Favorites List" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
@@ -605,9 +611,9 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("27_m4e82")
 
 [node name="Header" type="HBoxContainer" parent="Root/Requests List"]
 layout_mode = 2
@@ -632,9 +638,168 @@ layout_mode = 2
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
-[node name="TabContainer" type="TabContainer" parent="Root/Requests List"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RefreshButton" type="Button" parent="Root/Requests List/VBoxContainer"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+
+[node name="Header" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="IdHeader" type="Button" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Id"
+
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+text = "Generator"
+horizontal_alignment = 1
+
+[node name="CreatedHeader" type="Button" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Created"
+
+[node name="Label2" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Completed"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Time taken"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Cost"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+text = "Status"
+horizontal_alignment = 1
+
+[node name="Label6" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(125, 0)
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="RequestsContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("29_bu5g2")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Root/Requests List/VBoxContainer/Details Container/HBoxContainer"]
+custom_minimum_size = Vector2(28, 0)
+layout_mode = 2
+texture = ExtResource("12_67rai")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GeneratorLabel" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Generator"
+label_settings = ExtResource("4_wm25m")
+horizontal_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Root/Requests List/VBoxContainer/Details Container"]
+layout_mode = 2
+texture = ExtResource("3_r04pj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ErrorDetails" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "Error:"
+
+[node name="Error" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "Error
+"
+
+[node name="Refresh" type="Button" parent="Root/Requests List/VBoxContainer/Details Container"]
+layout_mode = 2
+text = "Refresh"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Status:"
+
+[node name="StatusLabel" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Generated"
+
+[node name="AssetsContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "Generator Parameters:"
+
+[node name="GeneratorParameters" type="TextEdit" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+editable = false
+scroll_smooth = true
+
+[node name="DeleteButton" type="Button" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+text = "Delete request"
+
+[node name="Control" type="Control" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
 
 [node name="Favorites List" type="VBoxContainer" parent="Root"]
 visible = false
@@ -669,6 +834,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Basic Examples" type="VBoxContainer" parent="Root"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -736,7 +902,131 @@ text = "Code"
 [node name="Code" type="TextEdit" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+text = "await GaxosContentGeneration.request_generation(
+\"stability-text-to-image\",
+{
+	engine_id = \"stable-diffusion-v1-6\",
+	text_prompts = [{
+		text = \"\",
+		weight = 1
+	}],
+	width = 512,
+	height = 512
+},
+{},
+{
+	player_id = \"godot_editor\"
+})"
 editable = false
+scroll_smooth = true
+
+[node name="Image To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Image To Image"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+layout_mode = 2
+text = "Enter your prompt:"
+
+[node name="Prompt" type="TextEdit" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="Generate Button" type="Button" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+layout_mode = 2
+text = "Generate"
+
+[node name="Code Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+layout_mode = 2
+text = "Code"
+
+[node name="Code" type="TextEdit" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+text = "await GaxosContentGeneration.request_generation(
+\"stability-text-to-image\",
+{
+	engine_id = \"stable-diffusion-v1-6\",
+	text_prompts = [{
+		text = \"\",
+		weight = 1
+	}],
+	width = 512,
+	height = 512
+},
+{},
+{
+	player_id = \"godot_editor\"
+})"
+editable = false
+scroll_smooth = true
+
+[node name="Masking" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Masking"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+text = "Enter your prompt:"
+
+[node name="Prompt" type="TextEdit" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="Generate Button" type="Button" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+text = "Generate"
+
+[node name="Code Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+text = "Code"
+
+[node name="Code" type="TextEdit" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+text = "await GaxosContentGeneration.request_generation(
+\"stability-text-to-image\",
+{
+	engine_id = \"stable-diffusion-v1-6\",
+	text_prompts = [{
+		text = \"\",
+		weight = 1
+	}],
+	width = 512,
+	height = 512
+},
+{},
+{
+	player_id = \"godot_editor\"
+})"
+editable = false
+scroll_smooth = true
 
 [node name="Configuration" type="VBoxContainer" parent="Root"]
 visible = false
@@ -782,6 +1072,7 @@ text = "API Key"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Api Key Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "rHXpn3X0VaWBajN73yu41gQccVMDg13WAt4Pwnrk"
 
 [node name="Refresh" type="Button" parent="Root/Configuration/Contents"]
 layout_mode = 2
@@ -798,6 +1089,7 @@ text = "Credits"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Credits Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "5077.10414844132 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -811,6 +1103,7 @@ text = "Storage"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Storage Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "16318716393 / 16642998272"
 editable = false
 
 [node name="Requests Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -824,4 +1117,5 @@ text = "Requests"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Requests Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+text = "597527 / 600100"
 editable = false
