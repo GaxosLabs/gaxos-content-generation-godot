@@ -4,18 +4,23 @@ extends GenerateScrollContainer
 func _ready() -> void:
 	$"VBoxContainer/Prompt".text_changed.connect(_refresh_code)
 	$"VBoxContainer/Prompt Missing Error Label".hide()
+	$"VBoxContainer/Image Missing Error Label".hide()
 	super()
 
 func _generate() -> void:
 	$"VBoxContainer/Prompt Missing Error Label".hide()
+	$"VBoxContainer/Image Missing Error Label".hide()
 	if $VBoxContainer/Prompt.text == "":
 		$"VBoxContainer/Prompt Missing Error Label".show()
+		return
+	if !$VBoxContainer/SelectImage.image:
+		$"VBoxContainer/Image Missing Error Label".show()
 		return
 	super()
 	
 func _request_generation():
 	await GaxosContentGeneration.request_generation(
-		"stability-text-to-image",
+		"stability-image-to-image",
 		{
 			engine_id = "stable-diffusion-v1-6",
 			text_prompts = [{
@@ -27,7 +32,10 @@ func _request_generation():
 			samples = 4,
 			steps = 30,
 			width = 512,
-			height = 512
+			height = 512,
+			init_image = Marshalls.raw_to_base64($VBoxContainer/SelectImage.image.save_png_to_buffer()),
+			init_image_mode = "IMAGE_STRENGTH",
+			image_strength = .35			
 		},
 		{},
 		{
@@ -37,7 +45,7 @@ func _request_generation():
 	
 func _get_code() -> String:
 	return "await GaxosContentGeneration.request_generation(\n" + \
-	"\"stability-text-to-image\",\n" + \
+	"\"stability-image-to-image\",\n" + \
 	"{\n" + \
 	"	engine_id = \"stable-diffusion-v1-6\",\n" + \
 	"	text_prompts = [{\n" + \
@@ -50,6 +58,9 @@ func _get_code() -> String:
 	"	steps = 30,\n" + \
 	"	width = 512,\n" + \
 	"	height = 512\n" + \
+	"	init_image = \"<base 64 image>\",\n" + \
+	"	init_image_mode = \"IMAGE_STRENGTH\",\n" + \
+	"	image_strength = .35\n" + \
 	"},\n" + \
 	"{},\n" + \
 	"{\n" + \

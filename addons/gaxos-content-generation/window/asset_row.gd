@@ -9,14 +9,15 @@ func initialize(asset: Dictionary) -> void:
 func _ready() -> void:
 	$TextureRect.texture = null
 	$HTTPRequest.request_completed.connect(self._http_request_completed)
-	var error = $HTTPRequest.request(asset["url"])
-	if error != OK:
-		push_error("An error occurred in the HTTP request.")
+	if "url" in asset && asset["url"] != "":
+		var error = $HTTPRequest.request(asset["url"])
+		if error != OK:
+			push_error("An error occurred in the HTTP request.")
 	
-	$Button.disabled = true
-	$Button.pressed.connect(_save)
-	$FileDialog.file_selected.connect(_save_to_file)
-	$FileDialog.add_filter("*.png")
+		$Button.disabled = true
+		$Button.pressed.connect(_save)
+		$FileDialog.file_selected.connect(_save_to_file)
+		$FileDialog.add_filter("*.png")
 	
 
 var _image: Image = null

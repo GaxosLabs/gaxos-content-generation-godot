@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=38 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
 [ext_resource type="Texture2D" uid="uid://ch48fiec0s03y" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon - blue.png" id="1_jwp27"]
@@ -33,6 +33,8 @@
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/configuration_contents.gd" id="29_j3m84"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/api_key_container.gd" id="29_ko3yr"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/text_to_image.gd" id="29_tl33q"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/image_to_image.gd" id="32_0tqv8"]
+[ext_resource type="PackedScene" uid="uid://b65sqjfh43jbi" path="res://addons/gaxos-content-generation/window/select_image.tscn" id="33_kie62"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6wjs"]
 font = ExtResource("2_jpljm")
@@ -124,7 +126,7 @@ script = ExtResource("6_bathn")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "5077.10414844132 / 7178"
+text = "5057.08214844132 / 7178"
 placeholder_text = "Credits"
 editable = false
 
@@ -611,6 +613,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("27_m4e82")
@@ -709,6 +712,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
 [node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
@@ -864,9 +868,10 @@ expand_mode = 2
 [node name="TabContainer" type="TabContainer" parent="Root/Basic Examples"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 0
+current_tab = 1
 
 [node name="Text To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("29_tl33q")
 metadata/_tab_index = 0
@@ -884,7 +889,7 @@ text = "Enter your prompt:"
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Prompt is requried"
@@ -921,8 +926,8 @@ editable = false
 scroll_smooth = true
 
 [node name="Image To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
-visible = false
 layout_mode = 2
+script = ExtResource("32_0tqv8")
 metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Image To Image"]
@@ -938,10 +943,20 @@ text = "Enter your prompt:"
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="SelectImage" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer" instance=ExtResource("33_kie62")]
+layout_mode = 2
+
+[node name="Image Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Image is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
@@ -957,7 +972,7 @@ text = "Code"
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 text = "await GaxosContentGeneration.request_generation(
-\"stability-text-to-image\",
+\"stability-image-to-image\",
 {
 	engine_id = \"stable-diffusion-v1-6\",
 	text_prompts = [{
@@ -966,6 +981,9 @@ text = "await GaxosContentGeneration.request_generation(
 	}],
 	width = 512,
 	height = 512
+	init_image = \"<base 64 image>\",
+	init_image_mode = \"IMAGE_STRENGTH\",
+	image_strength = .35
 },
 {},
 {
@@ -992,7 +1010,7 @@ text = "Enter your prompt:"
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 visible = false
 layout_mode = 2
 text = "Prompt is requried"
@@ -1089,7 +1107,7 @@ text = "Credits"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Credits Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "5077.10414844132 / 7178"
+text = "5057.08214844132 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]

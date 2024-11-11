@@ -26,9 +26,9 @@ func showRequest(request: Dictionary, refresh: Callable) -> void:
 	
 	$ScrollContainer/VBoxContainer/HBoxContainer/StatusLabel.text = request["status"]
 	if request["status"] != "PENDING":
-		$Refresh.show()
-	else:
 		$Refresh.hide()
+	else:
+		$Refresh.show()
 
 	if request["status"] == "FAILED":
 		$ErrorDetails.show()
