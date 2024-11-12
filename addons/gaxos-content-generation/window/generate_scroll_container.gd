@@ -2,6 +2,8 @@
 extends ScrollContainer
 class_name GenerateScrollContainer
 
+signal generated
+
 func _ready() -> void:
 	$"VBoxContainer/Generate Button".pressed.connect(_generate)
 	_refresh_code()
@@ -9,6 +11,7 @@ func _ready() -> void:
 func _generate() -> void:
 	$"VBoxContainer/Generate Button".disabled = true
 	await self._request_generation()
+	generated.emit()
 	$"VBoxContainer/Generate Button".disabled = false
 	
 func _refresh_code() -> void:

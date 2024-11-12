@@ -7,7 +7,7 @@ func initialize(asset: Dictionary) -> void:
 	self.asset = asset
 
 func _ready() -> void:
-	$TextureRect.texture = null
+	$TextureButton.texture_normal = null
 	$HTTPRequest.request_completed.connect(self._http_request_completed)
 	if "url" in asset && asset["url"] != "":
 		var error = $HTTPRequest.request(asset["url"])
@@ -18,6 +18,8 @@ func _ready() -> void:
 		$Button.pressed.connect(_save)
 		$FileDialog.file_selected.connect(_save_to_file)
 		$FileDialog.add_filter("*.png")
+		
+		$TextureButton.pressed.connect(func (): OS.shell_open(asset["url"]))
 	
 
 var _image: Image = null
@@ -31,7 +33,7 @@ func _http_request_completed(result: int, response_code: int, headers: PackedStr
 		push_error("Couldn't load the image.")
 
 	var texture = ImageTexture.create_from_image(_image)
-	$TextureRect.texture = texture
+	$TextureButton.texture_normal = texture
 	$Button.disabled = false	
 	
 func _save():

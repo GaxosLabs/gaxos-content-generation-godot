@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=38 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
 [ext_resource type="Texture2D" uid="uid://ch48fiec0s03y" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon - blue.png" id="1_jwp27"]
@@ -9,7 +9,6 @@
 [ext_resource type="ButtonGroup" uid="uid://ca00jdok1pcy6" path="res://addons/gaxos-content-generation/window/main_tab_button_group.tres" id="4_xwa81"]
 [ext_resource type="Texture2D" uid="uid://4e46tg81b8eo" path="res://addons/gaxos-content-generation/window/Dall-E.png" id="5_meie6"]
 [ext_resource type="Texture2D" uid="uid://h70px6t2ccba" path="res://addons/gaxos-content-generation/window/refresh.png" id="6_aoov5"]
-[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/credits_container.gd" id="6_bathn"]
 [ext_resource type="Texture2D" uid="uid://desdyd33uf6vr" path="res://addons/gaxos-content-generation/window/Stability AI.png" id="6_xvpw1"]
 [ext_resource type="Texture2D" uid="uid://guug1r165o02" path="res://addons/gaxos-content-generation/window/Meshy.png" id="7_j3ipm"]
 [ext_resource type="Texture2D" uid="uid://dkharlfh6t646" path="res://addons/gaxos-content-generation/window/Dall-E - blue.png" id="7_oekmt"]
@@ -122,19 +121,18 @@ expand_mode = 2
 
 [node name="Credits container" type="HBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
 layout_mode = 2
-script = ExtResource("6_bathn")
 
 [node name="Credits Text Box" type="TextEdit" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
+text = "4912.92897991563 / 7178"
 placeholder_text = "Credits"
 editable = false
 
 [node name="Refresh" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-disabled = true
 texture_normal = ExtResource("6_aoov5")
 ignore_texture_size = true
 stretch_mode = 5
@@ -615,6 +613,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("27_m4e82")
@@ -649,7 +648,6 @@ size_flags_vertical = 3
 
 [node name="RefreshButton" type="Button" parent="Root/Requests List/VBoxContainer"]
 layout_mode = 2
-disabled = true
 text = "Refresh"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
@@ -714,6 +712,7 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
 [node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
@@ -1063,7 +1062,7 @@ text = "await GaxosContentGeneration.request_generation(
 	steps = 30,
 	width = 512,
 	height = 512
-	mask_image = \"<base 64 mask>\",
+	init_image = \"<base 64 mask>\",
 	mask_source = \"INIT_IMAGE_ALPHA\"
 },
 {},
@@ -1121,7 +1120,6 @@ text = "rHXpn3X0VaWBajN73yu41gQccVMDg13WAt4Pwnrk"
 
 [node name="Refresh" type="Button" parent="Root/Configuration/Contents"]
 layout_mode = 2
-disabled = true
 text = "Refresh"
 
 [node name="Credits Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -1135,7 +1133,7 @@ text = "Credits"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Credits Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "4937.0030369587 / 7178"
+text = "4912.92897991563 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]

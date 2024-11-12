@@ -7,10 +7,10 @@ var _sortByDirection = "";
 var selectedId = -1
 
 func _ready() -> void:
-	$VBoxContainer/RefreshButton.pressed.connect(_refresh)
+	$VBoxContainer/RefreshButton.pressed.connect(refresh)
 	$VBoxContainer/ScrollContainer/VBoxContainer/Header/IdHeader.pressed.connect(func (): _setSortBy("id"))
 	$VBoxContainer/ScrollContainer/VBoxContainer/Header/CreatedHeader.pressed.connect(func (): _setSortBy("created_at"))
-	_refresh()
+	refresh()
 
 func _setSortBy(field: String) -> void:
 	if _sortBy == field:
@@ -21,9 +21,9 @@ func _setSortBy(field: String) -> void:
 	else:
 		_sortBy = field
 		_sortByDirection = "desc"
-	self._refresh()
+	self.refresh()
 
-func _refresh() -> void:
+func refresh() -> void:
 	$"VBoxContainer/Details Container".hide()
 	
 	$VBoxContainer/RefreshButton.disabled = true
@@ -41,4 +41,4 @@ func _refresh() -> void:
 
 func _showDetails(request: Dictionary) -> void:
 	selectedId = request["id"]
-	$"VBoxContainer/Details Container".showRequest(request, _refresh)
+	$"VBoxContainer/Details Container".showRequest(request, refresh)

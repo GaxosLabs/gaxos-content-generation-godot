@@ -29,6 +29,27 @@ func _ready() -> void:
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples/Button".pressed.connect(func (): self._show_subwindow(10))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Settings/Button".pressed.connect(func (): self._show_subwindow(11))
 	
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".pressed.connect(func (): $Root/Configuration/Contents.refresh())
+	$Root/Configuration/Contents.refreshing.connect(_refresingStats)
+	$Root/Configuration/Contents.refreshed.connect(_statsRefreshed)
+
+	$Root/Configuration/Contents.refresh()
+	
+	$"Root/Basic Examples/TabContainer/Image To Image".generated.connect(_refreshList)
+	$"Root/Basic Examples/TabContainer/Text To Image".generated.connect(_refreshList)
+	$"Root/Basic Examples/TabContainer/Masking".generated.connect(_refreshList)
+	
+func _refresingStats() -> void:
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".disabled = true
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = ""
+	
+func _statsRefreshed(stats: Dictionary) -> void:
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".disabled = false
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = str(stats["credits"]["total"] - stats["credits"]["used"]) + " / " + str(stats["credits"]["total"])
+
+func _refreshList() -> void:
+	$"Root/Requests List".refresh()
+
 func _show_subwindow(subwindow_index: int) -> void:
 	for i in subwindows.size():
 		if i == subwindow_index:
