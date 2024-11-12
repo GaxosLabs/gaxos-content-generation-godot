@@ -16,7 +16,20 @@ func send_request(url: String, custom_headers: PackedStringArray = PackedStringA
 		func(result, response_code, headers, body): 
 			data = body.get_string_from_utf8()	
 			if response_code != 200:
-				printerr(method, " ", url, "\n", custom_headers, "\n\n", request_data, "\n\n===============\n",  response_code, "\n", headers, "\n", data)
+				var request_data_log : String = request_data
+				if len(request_data_log) > 400:
+					var request_data_dict = JSON.parse_string(request_data)
+					request_data_log = "{"
+					for key in request_data_dict:
+						request_data_log += "\t\"" + key + "\" = "
+						var data = JSON.stringify(request_data_dict[key])
+						if len(data) > 100:
+							request_data_log += "..."
+						else:
+							request_data_log += data
+						request_data_log += ",\n"
+					request_data_log += "}"
+				printerr(method, " ", url, "\n", custom_headers, "\n\n", request_data_log, "\n\n===============\n",  response_code, "\n", headers, "\n", data)
 			task_finished.emit()
 			queue_free()
 	)

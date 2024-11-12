@@ -8,7 +8,6 @@ func _ready() -> void:
 	$FileDialog.add_filter("*.png")
 	
 func _select_image() -> void:
-	print("select image")
 	$FileDialog.show()
 
 var image: Image

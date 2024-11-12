@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=39 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
 [ext_resource type="Texture2D" uid="uid://ch48fiec0s03y" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon - blue.png" id="1_jwp27"]
@@ -35,6 +35,7 @@
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/text_to_image.gd" id="29_tl33q"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/image_to_image.gd" id="32_0tqv8"]
 [ext_resource type="PackedScene" uid="uid://b65sqjfh43jbi" path="res://addons/gaxos-content-generation/window/select_image.tscn" id="33_kie62"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/masking.gd" id="34_dw5xu"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6wjs"]
 font = ExtResource("2_jpljm")
@@ -45,6 +46,7 @@ font_color = Color(0, 0.945098, 1, 1)
 font_color = Color(1, 0.229536, 0.174185, 1)
 
 [node name="Gaxos Content Generation" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 2167.0
@@ -126,13 +128,13 @@ script = ExtResource("6_bathn")
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "5057.08214844132 / 7178"
 placeholder_text = "Credits"
 editable = false
 
 [node name="Refresh" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+disabled = true
 texture_normal = ExtResource("6_aoov5")
 ignore_texture_size = true
 stretch_mode = 5
@@ -613,7 +615,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("27_m4e82")
@@ -648,6 +649,7 @@ size_flags_vertical = 3
 
 [node name="RefreshButton" type="Button" parent="Root/Requests List/VBoxContainer"]
 layout_mode = 2
+disabled = true
 text = "Refresh"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
@@ -712,7 +714,6 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 
 [node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
@@ -755,8 +756,9 @@ text = "Error:"
 [node name="Error" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
-text = "Error
-"
+size_flags_horizontal = 3
+text = "Error"
+autowrap_mode = 3
 
 [node name="Refresh" type="Button" parent="Root/Requests List/VBoxContainer/Details Container"]
 layout_mode = 2
@@ -868,10 +870,9 @@ expand_mode = 2
 [node name="TabContainer" type="TabContainer" parent="Root/Basic Examples"]
 layout_mode = 2
 size_flags_vertical = 3
-current_tab = 1
+current_tab = 0
 
 [node name="Text To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
-visible = false
 layout_mode = 2
 script = ExtResource("29_tl33q")
 metadata/_tab_index = 0
@@ -915,6 +916,10 @@ text = "await GaxosContentGeneration.request_generation(
 		text = \"\",
 		weight = 1
 	}],
+	cfg_scale = 7,
+	clip_guidance_preset= \"None\",
+	samples = 4,
+	steps = 30,
 	width = 512,
 	height = 512
 },
@@ -926,6 +931,7 @@ editable = false
 scroll_smooth = true
 
 [node name="Image To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
+visible = false
 layout_mode = 2
 script = ExtResource("32_0tqv8")
 metadata/_tab_index = 1
@@ -979,6 +985,10 @@ text = "await GaxosContentGeneration.request_generation(
 		text = \"\",
 		weight = 1
 	}],
+	cfg_scale = 7,
+	clip_guidance_preset= \"None\",
+	samples = 4,
+	steps = 30,
 	width = 512,
 	height = 512
 	init_image = \"<base 64 image>\",
@@ -995,6 +1005,7 @@ scroll_smooth = true
 [node name="Masking" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
 visible = false
 layout_mode = 2
+script = ExtResource("34_dw5xu")
 metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Masking"]
@@ -1017,6 +1028,16 @@ text = "Prompt is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
+[node name="SelectMask" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
+layout_mode = 2
+
+[node name="Mask Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Mask is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
 [node name="Generate Button" type="Button" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
 text = "Generate"
@@ -1029,15 +1050,21 @@ text = "Code"
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 text = "await GaxosContentGeneration.request_generation(
-\"stability-text-to-image\",
+\"stability-masking\",
 {
-	engine_id = \"stable-diffusion-v1-6\",
+	engine_id = \"stable-diffusion-xl-1024-v1-0\",
 	text_prompts = [{
 		text = \"\",
 		weight = 1
 	}],
+	cfg_scale = 7,
+	clip_guidance_preset= \"None\",
+	samples = 4,
+	steps = 30,
 	width = 512,
 	height = 512
+	mask_image = \"<base 64 mask>\",
+	mask_source = \"INIT_IMAGE_ALPHA\"
 },
 {},
 {
@@ -1094,6 +1121,7 @@ text = "rHXpn3X0VaWBajN73yu41gQccVMDg13WAt4Pwnrk"
 
 [node name="Refresh" type="Button" parent="Root/Configuration/Contents"]
 layout_mode = 2
+disabled = true
 text = "Refresh"
 
 [node name="Credits Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -1107,7 +1135,7 @@ text = "Credits"
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Credits Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "5057.08214844132 / 7178"
+text = "4937.0030369587 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
