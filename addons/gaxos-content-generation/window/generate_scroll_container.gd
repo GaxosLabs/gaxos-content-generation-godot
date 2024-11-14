@@ -1,7 +1,7 @@
 @tool
 extends ScrollContainer
 class_name GenerateScrollContainer
-
+	
 signal generated
 
 func _ready() -> void:

@@ -45,7 +45,7 @@ func _refresingStats() -> void:
 	
 func _statsRefreshed(stats: Dictionary) -> void:
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".disabled = false
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = str(stats["credits"]["total"] - stats["credits"]["used"]) + " / " + str(stats["credits"]["total"])
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = "%.2f / %.2f" % [(stats["credits"]["total"] - stats["credits"]["used"]), (stats["credits"]["total"])]
 
 func _refreshList() -> void:
 	$"Root/Requests List".refresh()

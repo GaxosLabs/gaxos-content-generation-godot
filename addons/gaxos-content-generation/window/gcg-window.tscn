@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=43 format=3 uid="uid://db6gkh1ot38m6"]
 
+[ext_resource type="Theme" uid="uid://uld1dockdeh6" path="res://addons/gaxos-content-generation/window/gaxos.tres" id="1_bx3v4"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
 [ext_resource type="Texture2D" uid="uid://ch48fiec0s03y" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon - blue.png" id="1_jwp27"]
 [ext_resource type="Texture2D" uid="uid://bay6xpejlfjin" path="res://addons/gaxos-content-generation/window/Gaxos-Header-Icon.png" id="1_rvamv"]
@@ -27,12 +28,16 @@
 [ext_resource type="Texture2D" uid="uid://deb1glljwq5wd" path="res://addons/gaxos-content-generation/window/Gaxos Labs AI.png" id="22_mk8tw"]
 [ext_resource type="Texture2D" uid="uid://dx8xqucjb1mlb" path="res://addons/gaxos-content-generation/window/Requests List.png" id="23_f4h3q"]
 [ext_resource type="Texture2D" uid="uid://377gowrkwa0x" path="res://addons/gaxos-content-generation/window/Favorites List.png" id="24_2ewli"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gaxos_text_to_image.gd" id="26_7tycc"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/requests_list.gd" id="27_m4e82"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/improve_prompt.gd" id="28_4q36b"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/details_container.gd" id="29_bu5g2"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/configuration_contents.gd" id="29_j3m84"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/api_key_container.gd" id="29_ko3yr"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/text_to_image.gd" id="29_tl33q"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/slider_with_value.gd" id="30_ymafa"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/image_to_image.gd" id="32_0tqv8"]
+[ext_resource type="Texture2D" uid="uid://bexdelypubbss" path="res://addons/gaxos-content-generation/window/PromptPerfect.png" id="33_2a2nq"]
 [ext_resource type="PackedScene" uid="uid://b65sqjfh43jbi" path="res://addons/gaxos-content-generation/window/select_image.tscn" id="33_kie62"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/masking.gd" id="34_dw5xu"]
 
@@ -48,10 +53,11 @@ font_color = Color(1, 0.229536, 0.174185, 1)
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 2167.0
-offset_bottom = 1372.0
+offset_right = 1208.0
+offset_bottom = 1143.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 script = ExtResource("1_i1xbe")
 
 [node name="Root" type="HBoxContainer" parent="."]
@@ -61,19 +67,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="SideMenu" type="VBoxContainer" parent="Root"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 16
 
 [node name="Header" type="HBoxContainer" parent="Root/SideMenu"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 7
 
 [node name="Image" type="TextureRect" parent="Root/SideMenu/Header"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("1_jwp27")
 expand_mode = 2
 stretch_mode = 5
@@ -81,74 +91,87 @@ stretch_mode = 5
 [node name="Title" type="VBoxContainer" parent="Root/SideMenu/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Title" type="Label" parent="Root/SideMenu/Header/Title"]
 layout_mode = 2
 size_flags_vertical = 1
+theme = ExtResource("1_bx3v4")
 text = "AI Content Generation"
 label_settings = SubResource("LabelSettings_g6wjs")
 horizontal_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/Header/Title"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 
 [node name="SideMenuScroll" type="ScrollContainer" parent="Root/SideMenu"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 horizontal_scroll_mode = 0
 
 [node name="SideMenu" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 12
 
 [node name="Credits" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Credits"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Credits container" type="HBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Credits Text Box" type="TextEdit" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "4912.92897991563 / 7178"
+theme = ExtResource("1_bx3v4")
+text = "4872.00 / 7178.00"
 placeholder_text = "Credits"
 editable = false
 
 [node name="Refresh" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture_normal = ExtResource("6_aoov5")
 ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Generate Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
-visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generate Content"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
@@ -156,6 +179,7 @@ expand_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_bx3v4")
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
@@ -163,6 +187,7 @@ columns = 3
 [node name="Gaxos" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("1_rvamv")
@@ -171,8 +196,10 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="DallE" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("5_meie6")
@@ -181,8 +208,10 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Stability" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("6_xvpw1")
@@ -191,8 +220,10 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Meshy" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("7_j3ipm")
@@ -201,8 +232,10 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="Suno" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("8_cv0ey")
@@ -211,8 +244,10 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="ElevenLabs" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
+visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("9_3r7qk")
@@ -223,15 +258,18 @@ stretch_mode = 5
 [node name="Generate Multiple Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generate Multiple Content"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
@@ -239,6 +277,7 @@ expand_mode = 2
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("1_bx3v4")
 theme_override_constants/h_separation = 20
 theme_override_constants/v_separation = 20
 columns = 3
@@ -246,6 +285,7 @@ columns = 3
 [node name="Multi Text To Image" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("10_tpjbx")
@@ -256,6 +296,7 @@ stretch_mode = 5
 [node name="Multi Masking" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 texture_normal = ExtResource("11_tsrcb")
@@ -265,21 +306,25 @@ stretch_mode = 5
 
 [node name="Requests List" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Requests List"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Requests List"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Requests List"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Requests List"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 text = "Requests List"
@@ -289,21 +334,25 @@ expand_icon = true
 [node name="Favorites List" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Favorites List"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Favorites List"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 text = "Favorites List"
@@ -312,21 +361,25 @@ expand_icon = true
 
 [node name="Basic Examples" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Basic Examples"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 text = "Basic Examples"
@@ -335,21 +388,25 @@ expand_icon = true
 
 [node name="Settings" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/SideMenu/SideMenuScroll/SideMenu/Settings"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Settings"
 label_settings = ExtResource("4_wm25m")
 
 [node name="TextureRect" type="TextureRect" parent="Root/SideMenu/SideMenuScroll/SideMenu/Settings"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Button" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Settings"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 text = "Settings"
@@ -357,22 +414,25 @@ icon = ExtResource("13_wne1l")
 expand_icon = true
 
 [node name="Gaxos" type="VBoxContainer" parent="Root"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Gaxos"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Gaxos/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("22_mk8tw")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Gaxos/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Gaxos Labs AI"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -381,30 +441,454 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Gaxos"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Gaxos"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
+current_tab = 0
+
+[node name="Text To Image" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+script = ExtResource("26_7tycc")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Enter your prompt:"
+
+[node name="Prompt" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
+
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="ImprovePrompt" type="Button" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer" node_paths=PackedStringArray("prompt_field")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_colors/font_color = Color(0.749244, 0.673828, 1, 1)
+text = "Improve prompt"
+icon = ExtResource("33_2a2nq")
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("28_4q36b")
+prompt_field = NodePath("../Prompt")
+
+[node name="Label2" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Negative prompt"
+
+[node name="NegativePrompt" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Negative prompt"
+wrap_mode = 1
+
+[node name="Label3" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Checkpoint"
+
+[node name="Checkpoint" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="NSamples" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "NSamples"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/NSamples"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="Send seed" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+text = "Send seed"
+
+[node name="Seed" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Seed"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Seed"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Seed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 0.1
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Seed"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="Steps" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Steps"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Steps"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Steps"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 10.0
+max_value = 50.0
+step = 0.1
+value = 25.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Steps"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="CfgScale" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/CfgScale"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Cfg scale"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/CfgScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 35.0
+value = 6.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/CfgScale"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="Label5" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Sampler"
+
+[node name="Sampler" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label8" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Scheduler"
+
+[node name="Scheduler" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Denoise" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Denoise"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Denoise"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Denoise"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Denoise"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="Label10" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Loras"
+
+[node name="Loras" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Width" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Width"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Width"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Width"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 16.0
+max_value = 4096.0
+value = 512.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Width"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="Height" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Height"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Height"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Height"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 16.0
+max_value = 4096.0
+value = 512.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Height"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+editable = false
+
+[node name="Generate Button" type="Button" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Generate"
+
+[node name="Code Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Code"
+
+[node name="Code" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "await GaxosContentGeneration.request_generation(
+\"stability-text-to-image\",
+{
+	engine_id = \"stable-diffusion-v1-6\",
+	text_prompts = [{
+		text = \"\",
+		weight = 1
+	}],
+	cfg_scale = 7,
+	clip_guidance_preset= \"None\",
+	samples = 4,
+	steps = 30,
+	width = 512,
+	height = 512
+},
+{},
+{
+	player_id = \"godot_editor\"
+})"
+editable = false
+scroll_smooth = true
+
+[node name="Masking" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Gaxos/TabContainer/Masking"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Enter your prompt:"
+
+[node name="Prompt" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="SelectMask" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+label = "Image:"
+button_label = "Select image"
+
+[node name="Mask Missing Error Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Mask is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="Generate Button" type="Button" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Generate"
+
+[node name="Code Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Code"
+
+[node name="Code" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "await GaxosContentGeneration.request_generation(
+\"stability-masking\",
+{
+	engine_id = \"stable-diffusion-xl-1024-v1-0\",
+	text_prompts = [{
+		text = \"\",
+		weight = 1
+	}],
+	cfg_scale = 7,
+	clip_guidance_preset= \"None\",
+	samples = 4,
+	steps = 30,
+	width = 512,
+	height = 512
+	init_image = \"<base 64 mask>\",
+	mask_source = \"INIT_IMAGE_ALPHA\"
+},
+{},
+{
+	player_id = \"godot_editor\"
+})"
+editable = false
+scroll_smooth = true
 
 [node name="Dall-E" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Dall-E"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Dall-E/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("5_meie6")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Dall-E/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Dall-E"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -413,30 +897,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Dall-E"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Dall-E"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Stability AI" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Stability AI"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Stability AI/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("6_xvpw1")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Stability AI/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Stability AI"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -445,30 +935,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Stability AI"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Stability AI"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Meshy" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Meshy"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Meshy/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("7_j3ipm")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Meshy/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Meshy"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -477,30 +973,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Meshy"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Meshy"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Suno" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Suno"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Suno/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("8_cv0ey")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Suno/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Suno"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -509,30 +1011,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Suno"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Suno"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Eleven Labs" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Eleven Labs"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Eleven Labs/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("9_3r7qk")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Eleven Labs/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Eleven Labs"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -541,30 +1049,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Eleven Labs"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Eleven Labs"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Multiple Text To Image" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Multiple Text To Image"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Multiple Text To Image/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("10_tpjbx")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Multiple Text To Image/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Multiple Text To Image"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -573,30 +1087,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Multiple Text To Image"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Multiple Text To Image"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Multiple Masking" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Multiple Masking"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Multiple Masking/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("11_tsrcb")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Multiple Masking/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Multiple Masking"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -605,31 +1125,37 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Multiple Masking"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Multiple Masking"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 script = ExtResource("27_m4e82")
 
 [node name="Header" type="HBoxContainer" parent="Root/Requests List"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Requests List/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("23_f4h3q")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Requests List/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Requests List"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -638,6 +1164,7 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Requests List"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
@@ -645,70 +1172,84 @@ expand_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="RefreshButton" type="Button" parent="Root/Requests List/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Refresh"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="IdHeader" type="Button" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Id"
 
 [node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generator"
 horizontal_alignment = 1
 
 [node name="CreatedHeader" type="Button" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Created"
 
 [node name="Label2" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Completed"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Time taken"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Cost"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Status"
 horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
 custom_minimum_size = Vector2(125, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 horizontal_alignment = 1
 
 [node name="RequestsContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 
 [node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer"]
@@ -716,15 +1257,18 @@ visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 script = ExtResource("29_bu5g2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Icon" type="TextureRect" parent="Root/Requests List/VBoxContainer/Details Container/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("12_67rai")
 expand_mode = 1
 stretch_mode = 5
@@ -732,97 +1276,118 @@ stretch_mode = 5
 [node name="GeneratorLabel" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Generator"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
 
 [node name="TextureRect" type="TextureRect" parent="Root/Requests List/VBoxContainer/Details Container"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="ErrorDetails" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Error:"
 
 [node name="Error" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Error"
 autowrap_mode = 3
 
 [node name="Refresh" type="Button" parent="Root/Requests List/VBoxContainer/Details Container"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Refresh"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 horizontal_scroll_mode = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Status:"
 
 [node name="StatusLabel" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generated"
 
 [node name="AssetsContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generator Parameters:"
 
 [node name="GeneratorParameters" type="TextEdit" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 editable = false
 scroll_smooth = true
 
 [node name="DeleteButton" type="Button" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Delete request"
 
 [node name="Control" type="Control" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Favorites List" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Favorites List"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Favorites List/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("24_2ewli")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Favorites List/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Favorites Lists"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -831,30 +1396,36 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Favorites List"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Favorites List"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Basic Examples" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Basic Examples"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Basic Examples/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("12_67rai")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Basic Examples/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Basic Examples"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -863,50 +1434,61 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Basic Examples"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="TabContainer" type="TabContainer" parent="Root/Basic Examples"]
 layout_mode = 2
 size_flags_vertical = 3
+theme = ExtResource("1_bx3v4")
 current_tab = 0
 
 [node name="Text To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 script = ExtResource("29_tl33q")
 metadata/_tab_index = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Text To Image"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Enter your prompt:"
 
 [node name="Prompt" type="TextEdit" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
 
 [node name="Prompt Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Prompt is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
 [node name="Generate Button" type="Button" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generate"
 
 [node name="Code Label" type="Label" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Code"
 
 [node name="Code" type="TextEdit" parent="Root/Basic Examples/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "await GaxosContentGeneration.request_generation(
 \"stability-text-to-image\",
 {
@@ -932,50 +1514,63 @@ scroll_smooth = true
 [node name="Image To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 script = ExtResource("32_0tqv8")
 metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Image To Image"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Enter your prompt:"
 
 [node name="Prompt" type="TextEdit" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
 
 [node name="Prompt Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Prompt is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
 [node name="SelectImage" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
+label = "Image:"
+button_label = "Select image"
 
 [node name="Image Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Image is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
 [node name="Generate Button" type="Button" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generate"
 
 [node name="Code Label" type="Label" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Code"
 
 [node name="Code" type="TextEdit" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "await GaxosContentGeneration.request_generation(
 \"stability-image-to-image\",
 {
@@ -1004,50 +1599,63 @@ scroll_smooth = true
 [node name="Masking" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 script = ExtResource("34_dw5xu")
 metadata/_tab_index = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Basic Examples/TabContainer/Masking"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 
 [node name="Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Enter your prompt:"
 
 [node name="Prompt" type="TextEdit" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
 
 [node name="Prompt Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Prompt is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
+label = "Mask:"
+button_label = "Select mask"
 
 [node name="Mask Missing Error Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Mask is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
 [node name="Generate Button" type="Button" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Generate"
 
 [node name="Code Label" type="Label" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Code"
 
 [node name="Code" type="TextEdit" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "await GaxosContentGeneration.request_generation(
 \"stability-masking\",
 {
@@ -1076,19 +1684,23 @@ scroll_smooth = true
 visible = false
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Configuration"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Image" type="TextureRect" parent="Root/Configuration/Header"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("13_wne1l")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Configuration/Header"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "Configuration"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
@@ -1097,69 +1709,84 @@ vertical_alignment = 1
 [node name="Separator" type="TextureRect" parent="Root/Configuration"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Contents" type="VBoxContainer" parent="Root/Configuration"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 script = ExtResource("29_j3m84")
 
 [node name="Api Key Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 script = ExtResource("29_ko3yr")
 
 [node name="Label" type="Label" parent="Root/Configuration/Contents/Api Key Container"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "API Key"
 
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Api Key Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "rHXpn3X0VaWBajN73yu41gQccVMDg13WAt4Pwnrk"
 
 [node name="Refresh" type="Button" parent="Root/Configuration/Contents"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Refresh"
 
 [node name="Credits Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/Configuration/Contents/Credits Container"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Credits"
 
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Credits Container"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "4912.92897991563 / 7178"
+theme = ExtResource("1_bx3v4")
+text = "4872.91197991562 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/Configuration/Contents/Storage Container"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Storage"
 
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Storage Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "16318716393 / 16642998272"
 editable = false
 
 [node name="Requests Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 
 [node name="Label" type="Label" parent="Root/Configuration/Contents/Requests Container"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme = ExtResource("1_bx3v4")
 text = "Requests"
 
 [node name="TextEdit" type="TextEdit" parent="Root/Configuration/Contents/Requests Container"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
 text = "597527 / 600100"
 editable = false

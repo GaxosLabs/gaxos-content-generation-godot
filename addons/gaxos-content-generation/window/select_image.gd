@@ -2,6 +2,27 @@
 extends HBoxContainer
 class_name SelectImage
 
+func _get(property):
+	if property == "label":
+		return $Label.text
+	elif property == "button_label":
+		return $Button.text
+
+func _set(property, value):
+	if property == "label":
+		$Label.text = value
+		return true
+	elif property == "button_label":
+		$Button.text = value
+		return true
+	return false
+
+func _get_property_list():
+	return [
+		{ "name": "label", "type": TYPE_STRING },
+		{ "name": "button_label", "type": TYPE_STRING }
+	]
+	
 func _ready() -> void:
 	$Button.pressed.connect(_select_image)
 	$FileDialog.file_selected.connect(_image_selected)
