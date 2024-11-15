@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=45 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Theme" uid="uid://uld1dockdeh6" path="res://addons/gaxos-content-generation/window/gaxos.tres" id="1_bx3v4"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
@@ -41,6 +41,7 @@
 [ext_resource type="Texture2D" uid="uid://bexdelypubbss" path="res://addons/gaxos-content-generation/window/PromptPerfect.png" id="33_2a2nq"]
 [ext_resource type="PackedScene" uid="uid://b65sqjfh43jbi" path="res://addons/gaxos-content-generation/window/select_image.tscn" id="33_kie62"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/masking.gd" id="34_dw5xu"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/dall-e_text_to_image.gd" id="34_mi0bi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6wjs"]
 font = ExtResource("2_jpljm")
@@ -147,7 +148,7 @@ theme = ExtResource("1_bx3v4")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4408.97 / 7178.00"
+text = "4295.68 / 7178.00"
 placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
@@ -198,7 +199,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="DallE" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators"]
-visible = false
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
@@ -451,10 +451,9 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
-current_tab = 1
+current_tab = 0
 
 [node name="Text To Image" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 script = ExtResource("26_7tycc")
@@ -515,6 +514,7 @@ text = "Checkpoint"
 [node name="Checkpoint" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="NSamples" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -522,7 +522,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/NSamples"]
 custom_minimum_size = Vector2(80, 0)
@@ -546,7 +545,7 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "1.000000"
+text = "1"
 scroll_fit_content_height = true
 
 [node name="Send seed" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -559,7 +558,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Seed"]
 custom_minimum_size = Vector2(80, 0)
@@ -581,7 +579,7 @@ editable = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "0.000000"
+text = "0"
 scroll_fit_content_height = true
 
 [node name="Steps" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -590,7 +588,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Steps"]
 custom_minimum_size = Vector2(80, 0)
@@ -613,7 +610,7 @@ value = 25.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "25.000000"
+text = "25"
 scroll_fit_content_height = true
 
 [node name="CfgScale" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -622,7 +619,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/CfgScale"]
 custom_minimum_size = Vector2(80, 0)
@@ -644,7 +640,7 @@ value = 6.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "6.000000"
+text = "6"
 scroll_fit_content_height = true
 
 [node name="Label5" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -655,6 +651,7 @@ text = "Sampler"
 [node name="Sampler" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="Label8" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
@@ -671,7 +668,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Denoise"]
 custom_minimum_size = Vector2(80, 0)
@@ -693,7 +689,7 @@ value = 1.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "1.000000"
+text = "1"
 scroll_fit_content_height = true
 
 [node name="Label10" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -704,6 +700,7 @@ text = "Loras"
 [node name="Loras" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="Width" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -711,7 +708,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Width"]
 custom_minimum_size = Vector2(80, 0)
@@ -733,7 +729,7 @@ value = 512.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "512.000000"
+text = "512"
 scroll_fit_content_height = true
 
 [node name="Height" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -742,7 +738,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Height"]
 custom_minimum_size = Vector2(80, 0)
@@ -764,7 +759,7 @@ value = 512.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "512.000000"
+text = "512"
 scroll_fit_content_height = true
 
 [node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -789,7 +784,7 @@ text = "await GaxosContentGeneration.request_generation(
 \"gaxos-text-to-image\",
 {
 	prompt = \"\",
-	negative_prompt = \"Negative prompt\",
+	negative_prompt = \"\",
 	checkpoint = \"\",
 	n_samples = 1,
 	seed= ,
@@ -802,7 +797,9 @@ text = "await GaxosContentGeneration.request_generation(
 	width = 512,
 	height= 512,
 },
-{},
+{
+	improve_prompt = false,
+},
 {
 	player_id = \"godot_editor\"
 })"
@@ -810,6 +807,7 @@ editable = false
 scroll_smooth = true
 
 [node name="Masking" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 script = ExtResource("31_cj3np")
@@ -883,6 +881,7 @@ text = "Checkpoint"
 [node name="Checkpoint" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="NSamples" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -890,7 +889,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/NSamples"]
 custom_minimum_size = Vector2(80, 0)
@@ -914,7 +912,7 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "1.000000"
+text = "1"
 scroll_fit_content_height = true
 use_custom_word_separators = true
 
@@ -928,7 +926,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Seed"]
 custom_minimum_size = Vector2(80, 0)
@@ -950,7 +947,7 @@ editable = false
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "0.000000"
+text = "0"
 scroll_fit_content_height = true
 use_custom_word_separators = true
 
@@ -960,7 +957,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Steps"]
 custom_minimum_size = Vector2(80, 0)
@@ -983,7 +979,7 @@ value = 25.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "25.000000"
+text = "25"
 scroll_fit_content_height = true
 use_custom_word_separators = true
 
@@ -993,7 +989,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
-numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/CfgScale"]
 custom_minimum_size = Vector2(80, 0)
@@ -1015,7 +1010,7 @@ value = 6.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "6.000000"
+text = "6"
 scroll_fit_content_height = true
 use_custom_word_separators = true
 
@@ -1027,6 +1022,7 @@ text = "Sampler"
 [node name="Sampler" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="Label8" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
@@ -1036,6 +1032,7 @@ text = "Scheduler"
 [node name="Scheduler" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="Denoise" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 35)
@@ -1065,7 +1062,7 @@ value = 1.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "1.000000"
+text = "1.00"
 scroll_fit_content_height = true
 use_custom_word_separators = true
 
@@ -1077,6 +1074,7 @@ text = "Loras"
 [node name="Loras" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+scroll_fit_content_height = true
 
 [node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
@@ -1097,23 +1095,24 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "await GaxosContentGeneration.request_generation(
-\"stability-masking\",
+\"gaxos-masking\",
 {
-	engine_id = \"stable-diffusion-xl-1024-v1-0\",
-	text_prompts = [{
-		text = \"\",
-		weight = 1
-	}],
-	cfg_scale = 7,
-	clip_guidance_preset= \"None\",
-	samples = 4,
-	steps = 30,
-	width = 512,
-	height = 512
-	init_image = \"<base 64 mask>\",
-	mask_source = \"INIT_IMAGE_ALPHA\"
+	mask = \"<base 64 mask>\",
+	prompt = \"\",
+	negative_prompt = \"\",
+	checkpoint = \"\",
+	n_samples = 1,
+	seed= ,
+	steps = 25,
+	cfg = 6,
+	sampler_name = \"\",
+	scheduler = \"\",
+	denoise = 1,
+	loras = \"\",
 },
-{},
+{
+	improve_prompt = false,
+},
 {
 	player_id = \"godot_editor\"
 })"
@@ -1157,6 +1156,179 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
+current_tab = 0
+
+[node name="Text To Image" type="ScrollContainer" parent="Root/Dall-E/TabContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+script = ExtResource("34_mi0bi")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Dall-E/TabContainer/Text To Image"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Enter your prompt:"
+
+[node name="Prompt" type="TextEdit" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
+
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="ImprovePrompt" type="Button" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer" node_paths=PackedStringArray("prompt_field")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_colors/font_color = Color(0.749244, 0.673828, 1, 1)
+text = "Improve prompt"
+icon = ExtResource("33_2a2nq")
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("28_4q36b")
+prompt_field = NodePath("../Prompt")
+
+[node name="Label2" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Model:"
+
+[node name="Model" type="OptionButton" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Dall-E 2"
+popup/item_1/text = "Dall-E 3"
+popup/item_1/id = 1
+
+[node name="Label3" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Resolution"
+
+[node name="Resolution" type="OptionButton" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 3
+popup/item_0/text = "256x256"
+popup/item_1/text = "512x512"
+popup/item_1/id = 1
+popup/item_2/text = "1024x1024"
+popup/item_2/id = 2
+
+[node name="QualityLabel" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Quality"
+
+[node name="Quality" type="OptionButton" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Standard"
+popup/item_1/text = "Hd"
+popup/item_1/id = 1
+
+[node name="StyleLabel" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Style"
+
+[node name="Style" type="OptionButton" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Vivid"
+popup/item_1/text = "Natural"
+popup/item_1/id = 1
+
+[node name="NSamples" type="HBoxContainer" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "NSamples"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer/NSamples"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="TextEdit" type="TextEdit" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "1"
+scroll_fit_content_height = true
+
+[node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+text = "Improve prompt"
+
+[node name="Generate Button" type="Button" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Generate"
+
+[node name="Code Label" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Code"
+
+[node name="Code" type="TextEdit" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "await GaxosContentGeneration.request_generation(
+\"gaxos-text-to-image\",
+{
+	prompt = \"\",
+	negative_prompt = \"\",
+	checkpoint = \"\",
+	n_samples = 1,
+	seed= ,
+	steps = 25,
+	cfg = 6,
+	sampler_name = \"\",
+	scheduler = \"\",
+	denoise = 1,
+	loras = \"\",
+	width = 512,
+	height= 512,
+},
+{
+	improve_prompt = false,
+},
+{
+	player_id = \"godot_editor\"
+})"
+editable = false
+scroll_smooth = true
 
 [node name="Stability AI" type="VBoxContainer" parent="Root"]
 visible = false
@@ -2010,7 +2182,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4408.96655991555 / 7178"
+text = "4295.68024145506 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]

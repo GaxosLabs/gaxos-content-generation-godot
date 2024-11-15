@@ -32,7 +32,7 @@ func showRequest(request: Dictionary, refresh: Callable) -> void:
 
 	if request["status"] == "FAILED":
 		$ErrorDetails.show()
-		$ErrorDetails/Error.text = request["generator_error"]["message"]
+		$ErrorDetails/Error.text = request["generator_error"]["message"] if request["generator_error"]["message"] else JSON.stringify(request["generator_error"])
 	else:
 		$ErrorDetails.hide()
 		
