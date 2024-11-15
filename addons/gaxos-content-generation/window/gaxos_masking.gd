@@ -2,6 +2,7 @@
 extends GenerateScrollContainer
 
 func _ready() -> void:
+	$"VBoxContainer/Mask Missing Error Label".hide()
 	$"VBoxContainer/Prompt".text_changed.connect(_refresh_code)
 	$"VBoxContainer/Prompt Missing Error Label".hide()
 	$"VBoxContainer/NegativePrompt".text_changed.connect(_refresh_code)
@@ -16,8 +17,6 @@ func _ready() -> void:
 	$VBoxContainer/Scheduler.text_changed.connect(_refresh_code)
 	$VBoxContainer/Denoise/HSlider.value_changed.connect(func (v): _refresh_code())
 	$VBoxContainer/Loras.text_changed.connect(_refresh_code)
-	$VBoxContainer/Width/HSlider.value_changed.connect(func (v): _refresh_code())
-	$VBoxContainer/Height/HSlider.value_changed.connect(func (v): _refresh_code())
 	$VBoxContainer/ImprovePromptCheckbox.pressed.connect(_refresh_code)
 	super()
 
@@ -26,6 +25,10 @@ func _refresh_seed_slider():
 	_refresh_code()
 
 func _generate() -> void:
+	$"VBoxContainer/Mask Missing Error Label".hide()
+	if !$VBoxContainer/SelectMask.image:
+		$"VBoxContainer/Mask Missing Error Label".show()
+		return
 	$"VBoxContainer/Prompt Missing Error Label".hide()
 	if $VBoxContainer/Prompt.text == "":
 		$"VBoxContainer/Prompt Missing Error Label".show()
@@ -34,8 +37,9 @@ func _generate() -> void:
 	
 func _request_generation():
 	await GaxosContentGeneration.request_generation(
-		"gaxos-text-to-image",
+		"gaxos-masking",
 		{
+			mask = Marshalls.raw_to_base64($VBoxContainer/SelectMask.image.save_png_to_buffer()),
 			prompt = $VBoxContainer/Prompt.text,
 			negative_prompt = $VBoxContainer/NegativePrompt.text,
 
@@ -47,9 +51,7 @@ func _request_generation():
 			sampler_name = $VBoxContainer/Sampler.text,
 			scheduler = $VBoxContainer/Scheduler.text,
 			denoise = $VBoxContainer/Denoise/HSlider.value,
-			loras = $VBoxContainer/Loras.text,
-			width = $VBoxContainer/Width/HSlider.value,
-			height= $VBoxContainer/Height/HSlider.value
+			loras = $VBoxContainer/Loras.text
 		},
 		{
 			improve_prompt = $VBoxContainer/ImprovePromptCheckbox.button_pressed
@@ -61,8 +63,9 @@ func _request_generation():
 	
 func _get_code() -> String:
 	return "await GaxosContentGeneration.request_generation(\n" + \
-	"\"gaxos-text-to-image\",\n" + \
+	"\"gaxos-masking\",\n" + \
 	"{\n" + \
+	"	mask = \"<base 64 mask>\",\n" + \
 	"	prompt = \"" + $VBoxContainer/Prompt.text + "\",\n" + \
 	"	negative_prompt = \"" + $VBoxContainer/NegativePrompt.text + "\",\n" + \
 	"	checkpoint = \"" + $VBoxContainer/Checkpoint.text + "\",\n" + \
@@ -74,8 +77,6 @@ func _get_code() -> String:
 	"	scheduler = \"" + $VBoxContainer/Scheduler.text + "\",\n" + \
 	"	denoise = " + str($VBoxContainer/Denoise/HSlider.value) + ",\n" + \
 	"	loras = \"" + $VBoxContainer/Loras.text + "\",\n" + \
-	"	width = " + str($VBoxContainer/Width/HSlider.value) + ",\n" + \
-	"	height= " + str($VBoxContainer/Height/HSlider.value) + ",\n" + \
 	"},\n" + \
 	"{\n" + \
 	"	improve_prompt = " + ("true" if $VBoxContainer/ImprovePromptCheckbox.button_pressed else "false") + ",\n" + \

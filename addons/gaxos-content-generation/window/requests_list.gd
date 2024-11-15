@@ -24,7 +24,7 @@ func _setSortBy(field: String) -> void:
 	self.refresh()
 
 func refresh() -> void:
-	$"VBoxContainer/Details Container".hide()
+	$"VBoxContainer/DetailsScroll".hide()
 	
 	$VBoxContainer/RefreshButton.disabled = true
 	for n in $VBoxContainer/ScrollContainer/VBoxContainer/RequestsContainer.get_children():
@@ -41,4 +41,5 @@ func refresh() -> void:
 
 func _showDetails(request: Dictionary) -> void:
 	selectedId = request["id"]
-	$"VBoxContainer/Details Container".showRequest(request, refresh)
+	$"VBoxContainer/DetailsScroll/Details Container".showRequest(request, refresh)
+	$"VBoxContainer/DetailsScroll".show()

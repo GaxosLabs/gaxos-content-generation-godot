@@ -119,16 +119,12 @@ func get_published_asset(id: String) -> Dictionary:
 		return {}
 	return ret
 
-func delete_request(id: String) -> Array:
+func delete_request(id: String) -> void:
 	var request : GaxosRequest = GaxosRequest.new(self)
-	var str : String = await request.send_request(
+	await request.send_request(
 		BASE_URL + "request/" + id.uri_encode(), 
 		_headers,
 		HTTPClient.METHOD_DELETE)
-	var ret = JSON.parse_string(str)
-	if typeof(ret) == TYPE_NIL:
-		return []
-	return ret
 
 func make_asset_public(request_id: String, asset_id: String, make_it_public: bool):
 	var request : GaxosRequest = GaxosRequest.new(self)

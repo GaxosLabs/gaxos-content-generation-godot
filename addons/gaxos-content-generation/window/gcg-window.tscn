@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=44 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Theme" uid="uid://uld1dockdeh6" path="res://addons/gaxos-content-generation/window/gaxos.tres" id="1_bx3v4"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
@@ -36,6 +36,7 @@
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/api_key_container.gd" id="29_ko3yr"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/text_to_image.gd" id="29_tl33q"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/slider_with_value.gd" id="30_ymafa"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gaxos_masking.gd" id="31_cj3np"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/image_to_image.gd" id="32_0tqv8"]
 [ext_resource type="Texture2D" uid="uid://bexdelypubbss" path="res://addons/gaxos-content-generation/window/PromptPerfect.png" id="33_2a2nq"]
 [ext_resource type="PackedScene" uid="uid://b65sqjfh43jbi" path="res://addons/gaxos-content-generation/window/select_image.tscn" id="33_kie62"]
@@ -53,8 +54,8 @@ font_color = Color(1, 0.229536, 0.174185, 1)
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 1208.0
-offset_bottom = 1143.0
+offset_right = 938.0
+offset_bottom = 936.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
@@ -146,7 +147,7 @@ custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4872.00 / 7178.00"
+text = "4408.97 / 7178.00"
 placeholder_text = "Credits"
 editable = false
 
@@ -502,7 +503,6 @@ text = "Negative prompt"
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "Negative prompt"
 wrap_mode = 1
 
 [node name="Label3" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -543,6 +543,7 @@ ticks_on_borders = true
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "1.000000"
 editable = false
 
 [node name="Send seed" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -570,11 +571,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 10.0
 step = 0.1
+editable = false
 
 [node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Seed"]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "0.000000"
 editable = false
 
 [node name="Steps" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -605,6 +608,7 @@ value = 25.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "25.000000"
 editable = false
 
 [node name="CfgScale" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -634,6 +638,7 @@ value = 6.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "6.000000"
 editable = false
 
 [node name="Label5" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -681,6 +686,7 @@ value = 1.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "1.000000"
 editable = false
 
 [node name="Label10" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -719,6 +725,7 @@ value = 512.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "512.000000"
 editable = false
 
 [node name="Height" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
@@ -748,7 +755,12 @@ value = 512.0
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+text = "512.000000"
 editable = false
+
+[node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
+layout_mode = 2
+text = "Improve prompt"
 
 [node name="Generate Button" type="Button" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
@@ -765,19 +777,21 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "await GaxosContentGeneration.request_generation(
-\"stability-text-to-image\",
+\"gaxos-text-to-image\",
 {
-	engine_id = \"stable-diffusion-v1-6\",
-	text_prompts = [{
-		text = \"\",
-		weight = 1
-	}],
-	cfg_scale = 7,
-	clip_guidance_preset= \"None\",
-	samples = 4,
-	steps = 30,
+	prompt = \"\",
+	negative_prompt = \"Negative prompt\",
+	checkpoint = \"\",
+	n_samples = 1,
+	seed= ,
+	steps = 25,
+	cfg = 6,
+	sampler_name = \"\",
+	scheduler = \"\",
+	denoise = 1,
+	loras = \"\",
 	width = 512,
-	height = 512
+	height= 512,
 },
 {},
 {
@@ -790,6 +804,7 @@ scroll_smooth = true
 visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
+script = ExtResource("31_cj3np")
 metadata/_tab_index = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Root/Gaxos/TabContainer/Masking"]
@@ -797,6 +812,20 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
+
+[node name="SelectMask" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+label = "Image:"
+button_label = "Select image"
+
+[node name="Mask Missing Error Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Mask is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
@@ -816,19 +845,224 @@ text = "Prompt is requried"
 label_settings = SubResource("LabelSettings_ur7vq")
 horizontal_alignment = 2
 
-[node name="SelectMask" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
+[node name="ImprovePrompt" type="Button" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" node_paths=PackedStringArray("prompt_field")]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-label = "Image:"
-button_label = "Select image"
+theme_override_colors/font_color = Color(0.749244, 0.673828, 1, 1)
+text = "Improve prompt"
+icon = ExtResource("33_2a2nq")
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("28_4q36b")
+prompt_field = NodePath("../Prompt")
 
-[node name="Mask Missing Error Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
-visible = false
+[node name="Label2" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-text = "Mask is requried"
-label_settings = SubResource("LabelSettings_ur7vq")
-horizontal_alignment = 2
+text = "Negative prompt"
+
+[node name="NegativePrompt" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
+
+[node name="Label3" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Checkpoint"
+
+[node name="Checkpoint" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="NSamples" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "NSamples"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/NSamples"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "1.000000"
+editable = false
+
+[node name="Send seed" type="CheckBox" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+text = "Send seed"
+
+[node name="Seed" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Seed"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Seed"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Seed"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 10.0
+step = 0.1
+editable = false
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Seed"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "0.000000"
+editable = false
+
+[node name="Steps" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Steps"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Steps"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Steps"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 10.0
+max_value = 50.0
+step = 0.1
+value = 25.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Steps"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "25.000000"
+editable = false
+
+[node name="CfgScale" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/CfgScale"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Cfg scale"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/CfgScale"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 35.0
+value = 6.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/CfgScale"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "6.000000"
+editable = false
+
+[node name="Label5" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Sampler"
+
+[node name="Sampler" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label8" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Scheduler"
+
+[node name="Scheduler" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Denoise" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Denoise"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Denoise"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Denoise"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Denoise"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "1.000000"
+editable = false
+
+[node name="Label10" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Loras"
+
+[node name="Loras" type="TextEdit" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
+layout_mode = 2
+text = "Improve prompt"
 
 [node name="Generate Button" type="Button" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
@@ -1136,6 +1370,7 @@ theme = ExtResource("1_bx3v4")
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
 visible = false
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
@@ -1190,82 +1425,85 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
 [node name="Header" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer"]
+clip_contents = true
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
 [node name="IdHeader" type="Button" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(125, 0)
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Id"
 
 [node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(220, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Generator"
 horizontal_alignment = 1
 
 [node name="CreatedHeader" type="Button" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(170, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Created"
 
 [node name="Label2" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(170, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Completed"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(125, 0)
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Time taken"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(125, 0)
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Cost"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(125, 0)
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Status"
 horizontal_alignment = 1
 
 [node name="Label6" type="Label" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer/Header"]
-custom_minimum_size = Vector2(125, 0)
+custom_minimum_size = Vector2(170, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 horizontal_alignment = 1
 
 [node name="RequestsContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/ScrollContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_bx3v4")
-theme_override_constants/separation = 10
 
-[node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer"]
+[node name="DetailsScroll" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
+
+[node name="Details Container" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll"]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
 script = ExtResource("29_bu5g2")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container"]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
-[node name="Icon" type="TextureRect" parent="Root/Requests List/VBoxContainer/Details Container/HBoxContainer"]
+[node name="Icon" type="TextureRect" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/HBoxContainer"]
 custom_minimum_size = Vector2(28, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
@@ -1273,7 +1511,7 @@ texture = ExtResource("12_67rai")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="GeneratorLabel" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/HBoxContainer"]
+[node name="GeneratorLabel" type="Label" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
@@ -1281,27 +1519,27 @@ text = "Generator"
 label_settings = ExtResource("4_wm25m")
 horizontal_alignment = 2
 
-[node name="TextureRect" type="TextureRect" parent="Root/Requests List/VBoxContainer/Details Container"]
+[node name="TextureRect" type="TextureRect" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
 
-[node name="ErrorDetails" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+[node name="ErrorDetails" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
-[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ErrorDetails"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Error:"
 
-[node name="Error" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ErrorDetails"]
+[node name="Error" type="Label" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ErrorDetails"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1309,60 +1547,60 @@ theme = ExtResource("1_bx3v4")
 text = "Error"
 autowrap_mode = 3
 
-[node name="Refresh" type="Button" parent="Root/Requests List/VBoxContainer/Details Container"]
+[node name="Refresh" type="Button" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Refresh"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer/Details Container"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
 horizontal_scroll_mode = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
-[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Status:"
 
-[node name="StatusLabel" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="StatusLabel" type="Label" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Generated"
 
-[node name="AssetsContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+[node name="AssetsContainer" type="HBoxContainer" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 25
 
-[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Generator Parameters:"
 
-[node name="GeneratorParameters" type="TextEdit" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+[node name="GeneratorParameters" type="TextEdit" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 editable = false
 scroll_smooth = true
 
-[node name="DeleteButton" type="Button" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+[node name="DeleteButton" type="Button" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Delete request"
 
-[node name="Control" type="Control" parent="Root/Requests List/VBoxContainer/Details Container/ScrollContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
@@ -1754,7 +1992,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4872.91197991562 / 7178"
+text = "4408.96655991555 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]

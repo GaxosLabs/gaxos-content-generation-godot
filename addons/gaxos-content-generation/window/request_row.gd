@@ -8,10 +8,10 @@ func initialize(request: Dictionary, onClick: Callable):
 	var completedAt = request["completed_at"]
 	if completedAt > 0:
 		$Completed.text = Time.get_datetime_string_from_unix_time(completedAt)
-		$"Time taken".text = str(request["completed_at"] - request["created_at"]) + " seconds"
+		$"Time taken".text = "%.f seconds" % (request["completed_at"] - request["created_at"])
 	else:
 		$Completed.text = "---"
-		$"Time taken".text = str(Time.get_unix_time_from_system() - request["created_at"]) + " seconds"
+		$"Time taken".text = "%.f seconds" % (Time.get_unix_time_from_system() - request["created_at"])
 	$Cost.text = str(request["deducted_credits"])
 	$Status.text = str(request["status"])
 	
