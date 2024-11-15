@@ -139,17 +139,18 @@ texture = ExtResource("3_r04pj")
 expand_mode = 2
 
 [node name="Credits container" type="HBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
 [node name="Credits Text Box" type="TextEdit" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
 text = "4408.97 / 7178.00"
 placeholder_text = "Credits"
 editable = false
+scroll_fit_content_height = true
 
 [node name="Refresh" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(40, 0)
@@ -329,7 +330,7 @@ theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
 text = "Requests List"
-icon = ExtResource("10_tpjbx")
+icon = ExtResource("23_f4h3q")
 expand_icon = true
 
 [node name="Favorites List" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
@@ -450,9 +451,10 @@ expand_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
-current_tab = 0
+current_tab = 1
 
 [node name="Text To Image" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 script = ExtResource("26_7tycc")
@@ -520,6 +522,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/NSamples"]
 custom_minimum_size = Vector2(80, 0)
@@ -544,7 +547,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "1.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="Send seed" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
@@ -556,6 +559,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Seed"]
 custom_minimum_size = Vector2(80, 0)
@@ -578,7 +582,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "0.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="Steps" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -586,6 +590,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Steps"]
 custom_minimum_size = Vector2(80, 0)
@@ -609,7 +614,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "25.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="CfgScale" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -617,6 +622,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/CfgScale"]
 custom_minimum_size = Vector2(80, 0)
@@ -639,7 +645,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "6.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="Label5" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
@@ -665,6 +671,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Denoise"]
 custom_minimum_size = Vector2(80, 0)
@@ -687,7 +694,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "1.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="Label10" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
@@ -704,6 +711,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Width"]
 custom_minimum_size = Vector2(80, 0)
@@ -726,7 +734,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "512.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="Height" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -734,6 +742,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer/Height"]
 custom_minimum_size = Vector2(80, 0)
@@ -756,7 +765,7 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "512.000000"
-editable = false
+scroll_fit_content_height = true
 
 [node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Gaxos/TabContainer/Text To Image/VBoxContainer"]
 layout_mode = 2
@@ -801,7 +810,6 @@ editable = false
 scroll_smooth = true
 
 [node name="Masking" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
-visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 script = ExtResource("31_cj3np")
@@ -882,6 +890,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/NSamples"]
 custom_minimum_size = Vector2(80, 0)
@@ -906,7 +915,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "1.000000"
-editable = false
+scroll_fit_content_height = true
+use_custom_word_separators = true
 
 [node name="Send seed" type="CheckBox" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
@@ -918,6 +928,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Seed"]
 custom_minimum_size = Vector2(80, 0)
@@ -940,7 +951,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "0.000000"
-editable = false
+scroll_fit_content_height = true
+use_custom_word_separators = true
 
 [node name="Steps" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -948,6 +960,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Steps"]
 custom_minimum_size = Vector2(80, 0)
@@ -971,7 +984,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "25.000000"
-editable = false
+scroll_fit_content_height = true
+use_custom_word_separators = true
 
 [node name="CfgScale" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
@@ -979,6 +993,7 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = null
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/CfgScale"]
 custom_minimum_size = Vector2(80, 0)
@@ -1001,7 +1016,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "6.000000"
-editable = false
+scroll_fit_content_height = true
+use_custom_word_separators = true
 
 [node name="Label5" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
@@ -1022,11 +1038,12 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 
 [node name="Denoise" type="HBoxContainer" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 35)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 theme_override_constants/separation = 10
 script = ExtResource("30_ymafa")
+numberOfDecimals = 2
 
 [node name="Label" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer/Denoise"]
 custom_minimum_size = Vector2(80, 0)
@@ -1049,7 +1066,8 @@ custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "1.000000"
-editable = false
+scroll_fit_content_height = true
+use_custom_word_separators = true
 
 [node name="Label10" type="Label" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer"]
 layout_mode = 2
