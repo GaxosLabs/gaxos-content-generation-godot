@@ -2,6 +2,8 @@
 extends GenerateScrollContainer
 
 func _ready() -> void:
+	$"VBoxContainer/Image Missing Error Label".hide()
+	$"VBoxContainer/Mask Missing Error Label".hide()
 	$"VBoxContainer/Prompt".text_changed.connect(_refresh_code)
 	$"VBoxContainer/Prompt Missing Error Label".hide()
 	
@@ -13,6 +15,11 @@ func _ready() -> void:
 
 	$VBoxContainer/ImprovePromptCheckbox.pressed.connect(_refresh_code)
 	_model_changed($VBoxContainer/Model.selected)
+	
+	$VBoxContainer/ReplaceColor.color_changed.connect(func (v): _refresh_code())
+	$"VBoxContainer/ReplaceColorDelta/HSlider".value_changed.connect(func (v): _refresh_code())
+	$"VBoxContainer/Make color transparent".pressed.connect(_make_color_transparent_changed)
+	_make_color_transparent_changed()
 	super()
 
 func _model_changed(v) -> void:
@@ -41,8 +48,25 @@ func _model_changed(v) -> void:
 		$VBoxContainer/Quality.show()
 	_refresh_code()
 
+func _make_color_transparent_changed() -> void:
+	if $"VBoxContainer/Make color transparent".button_pressed:
+		$VBoxContainer/ReplaceColor.show()
+		$VBoxContainer/ReplaceColorDelta.show()
+	else:
+		$VBoxContainer/ReplaceColor.hide()
+		$VBoxContainer/ReplaceColorDelta.hide()
+	_refresh_code()
+
 func _generate() -> void:
+	$"VBoxContainer/Image Missing Error Label".hide()
+	$"VBoxContainer/Mask Missing Error Label".hide()
 	$"VBoxContainer/Prompt Missing Error Label".hide()
+	if !$VBoxContainer/SelectImage.image:
+		$"VBoxContainer/Image Missing Error Label".show()
+		return
+	if !$VBoxContainer/SelectMask.image:
+		$"VBoxContainer/Mask Missing Error Label".show()
+		return
 	if $VBoxContainer/Prompt.text == "":
 		$"VBoxContainer/Prompt Missing Error Label".show()
 		return
@@ -56,6 +80,8 @@ func _request_generation():
 			model = "dall-e-2",
 			n= $VBoxContainer/NSamples/HSlider.value,
 			size= $VBoxContainer/Resolution.text,
+			image= Marshalls.raw_to_base64($VBoxContainer/SelectImage.image.save_png_to_buffer()),
+			mask= Marshalls.raw_to_base64($VBoxContainer/SelectMask.image.save_png_to_buffer()),
 		}
 	else: 
 		parameters = {
@@ -65,13 +91,25 @@ func _request_generation():
 			quality= $VBoxContainer/Quality.text.to_lower(),
 			size= $VBoxContainer/Resolution.text,
 			style= $VBoxContainer/Style.text.to_lower(),
+			image= Marshalls.raw_to_base64($VBoxContainer/SelectImage.image.save_png_to_buffer()),
+			mask= Marshalls.raw_to_base64($VBoxContainer/SelectMask.image.save_png_to_buffer()),
+		}
+		
+	var options;
+	if $"VBoxContainer/Make color transparent".button_pressed:
+		options = {
+			transparent_color = "\"%s\"" % $VBoxContainer/ReplaceColor.color.to_html(),
+			transparent_color_replace_delta = $"VBoxContainer/ReplaceColorDelta/HSlider".value,
+			improve_prompt = $VBoxContainer/ImprovePromptCheckbox.button_pressed
+		}
+	else:
+		options = {
+			improve_prompt = $VBoxContainer/ImprovePromptCheckbox.button_pressed
 		}
 	await GaxosContentGeneration.request_generation(
-		"dall-e-text-to-image",
+		"dall-e-inpainting",
 		parameters,
-		{
-			improve_prompt = $VBoxContainer/ImprovePromptCheckbox.button_pressed
-		},
+		options,
 		{
 			player_id = "godot_editor"
 		}
@@ -85,6 +123,8 @@ func _get_code() -> String:
 			"	model = \"dall-e-2\",\n" + \
 			"	n = " + str($VBoxContainer/NSamples/HSlider.value) + ",\n" + \
 			"	size = \"" + $VBoxContainer/Resolution.text + "\",\n" + \
+			"	image = \"<base 64 image>\",\n" + \
+			"	mask = \"<base 64 mask>\",\n" + \
 			"},\n"	
 	else: 
 		parameters = "{\n" + \
@@ -94,6 +134,8 @@ func _get_code() -> String:
 			"	quality = \"" + $VBoxContainer/Quality.text.to_lower() + "\",\n" + \
 			"	size = \"" + $VBoxContainer/Resolution.text + "\",\n" + \
 			"	style = \"" + $VBoxContainer/Style.text.to_lower() + "\",\n" + \
+			"	image = \"<base 64 image>\",\n" + \
+			"	mask = \"<base 64 mask>\",\n" + \
 			"},\n"
 		
 	return "await GaxosContentGeneration.request_generation(\n" + \

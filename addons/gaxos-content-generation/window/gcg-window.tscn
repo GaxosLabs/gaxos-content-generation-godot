@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=46 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Theme" uid="uid://uld1dockdeh6" path="res://addons/gaxos-content-generation/window/gaxos.tres" id="1_bx3v4"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
@@ -42,6 +42,7 @@
 [ext_resource type="PackedScene" uid="uid://b65sqjfh43jbi" path="res://addons/gaxos-content-generation/window/select_image.tscn" id="33_kie62"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/masking.gd" id="34_dw5xu"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/dall-e_text_to_image.gd" id="34_mi0bi"]
+[ext_resource type="Script" path="res://addons/gaxos-content-generation/window/dall-e_in_painting.gd" id="35_v27sj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_g6wjs"]
 font = ExtResource("2_jpljm")
@@ -55,8 +56,8 @@ font_color = Color(1, 0.229536, 0.174185, 1)
 clip_contents = true
 layout_mode = 3
 anchors_preset = 0
-offset_right = 938.0
-offset_bottom = 936.0
+offset_right = 1425.0
+offset_bottom = 1061.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
@@ -148,7 +149,7 @@ theme = ExtResource("1_bx3v4")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4295.68 / 7178.00"
+text = "4294.73 / 7178.00"
 placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
@@ -416,6 +417,7 @@ icon = ExtResource("13_wne1l")
 expand_icon = true
 
 [node name="Gaxos" type="VBoxContainer" parent="Root"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
@@ -1229,11 +1231,13 @@ popup/item_2/text = "1024x1024"
 popup/item_2/id = 2
 
 [node name="QualityLabel" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Quality"
 
 [node name="Quality" type="OptionButton" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+visible = false
 layout_mode = 2
 selected = 1
 item_count = 2
@@ -1242,11 +1246,13 @@ popup/item_1/text = "Hd"
 popup/item_1/id = 1
 
 [node name="StyleLabel" type="Label" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "Style"
 
 [node name="Style" type="OptionButton" parent="Root/Dall-E/TabContainer/Text To Image/VBoxContainer"]
+visible = false
 layout_mode = 2
 selected = 1
 item_count = 2
@@ -1305,21 +1311,255 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 text = "await GaxosContentGeneration.request_generation(
-\"gaxos-text-to-image\",
+\"dall-e-text-to-image\",
 {
 	prompt = \"\",
-	negative_prompt = \"\",
-	checkpoint = \"\",
-	n_samples = 1,
-	seed= ,
-	steps = 25,
-	cfg = 6,
-	sampler_name = \"\",
-	scheduler = \"\",
-	denoise = 1,
-	loras = \"\",
-	width = 512,
-	height= 512,
+	model = \"dall-e-2\",
+	n = 1,
+	size = \"512x512\",
+},
+{
+	improve_prompt = false,
+},
+{
+	player_id = \"godot_editor\"
+})"
+editable = false
+scroll_smooth = true
+
+[node name="In Painting" type="ScrollContainer" parent="Root/Dall-E/TabContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+script = ExtResource("35_v27sj")
+metadata/_tab_index = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Root/Dall-E/TabContainer/In Painting"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+
+[node name="SelectImage" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+label = "Image:"
+button_label = "Select image"
+
+[node name="Image Missing Error Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Mask is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="SelectMask" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+label = "Mask:"
+button_label = "Select mask"
+
+[node name="Mask Missing Error Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Mask is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Enter your prompt:"
+
+[node name="Prompt" type="TextEdit" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+wrap_mode = 1
+
+[node name="Prompt Missing Error Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Prompt is requried"
+label_settings = SubResource("LabelSettings_ur7vq")
+horizontal_alignment = 2
+
+[node name="ImprovePrompt" type="Button" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" node_paths=PackedStringArray("prompt_field")]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_colors/font_color = Color(0.749244, 0.673828, 1, 1)
+text = "Improve prompt"
+icon = ExtResource("33_2a2nq")
+icon_alignment = 2
+expand_icon = true
+script = ExtResource("28_4q36b")
+prompt_field = NodePath("../Prompt")
+
+[node name="Label2" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Model:"
+
+[node name="Model" type="OptionButton" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Dall-E 2"
+popup/item_1/text = "Dall-E 3"
+popup/item_1/id = 1
+
+[node name="Label3" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Resolution"
+
+[node name="Resolution" type="OptionButton" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+selected = 1
+item_count = 3
+popup/item_0/text = "256x256"
+popup/item_1/text = "512x512"
+popup/item_1/id = 1
+popup/item_2/text = "1024x1024"
+popup/item_2/id = 2
+
+[node name="QualityLabel" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Quality"
+
+[node name="Quality" type="OptionButton" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Standard"
+popup/item_1/text = "Hd"
+popup/item_1/id = 1
+
+[node name="StyleLabel" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Style"
+
+[node name="Style" type="OptionButton" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+selected = 1
+item_count = 2
+popup/item_0/text = "Vivid"
+popup/item_1/text = "Natural"
+popup/item_1/id = 1
+
+[node name="NSamples" type="HBoxContainer" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+
+[node name="Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "NSamples"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer/NSamples"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+min_value = 1.0
+max_value = 10.0
+value = 1.0
+tick_count = 10
+ticks_on_borders = true
+
+[node name="TextEdit" type="TextEdit" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer/NSamples"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "1"
+scroll_fit_content_height = true
+
+[node name="ImprovePromptCheckbox" type="CheckBox" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+text = "Improve prompt"
+
+[node name="Make color transparent" type="CheckBox" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+text = "Make color transparent"
+
+[node name="ReplaceColor" type="ColorPicker" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+layout_mode = 2
+edit_alpha = false
+picker_shape = 1
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+sliders_visible = false
+hex_visible = false
+presets_visible = false
+
+[node name="ReplaceColorDelta" type="HBoxContainer" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+theme_override_constants/separation = 10
+script = ExtResource("30_ymafa")
+numberOfDecimals = 1
+
+[node name="Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer/ReplaceColorDelta"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_vertical = 5
+theme = ExtResource("1_bx3v4")
+text = "Replace color delta"
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer/ReplaceColorDelta"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+step = 0.1
+value = 25.0
+
+[node name="TextEdit" type="TextEdit" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer/ReplaceColorDelta"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "25.0"
+scroll_fit_content_height = true
+
+[node name="Generate Button" type="Button" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Generate"
+
+[node name="Code Label" type="Label" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "Code"
+
+[node name="Code" type="TextEdit" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+theme = ExtResource("1_bx3v4")
+text = "await GaxosContentGeneration.request_generation(
+\"dall-e-text-to-image\",
+{
+	prompt = \"\",
+	model = \"dall-e-2\",
+	n = 1,
+	size = \"512x512\",
 },
 {
 	improve_prompt = false,
@@ -1559,7 +1799,6 @@ size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
-visible = false
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1676,7 +1915,6 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="DetailsScroll" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
-visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
@@ -1791,7 +2029,7 @@ theme = ExtResource("1_bx3v4")
 text = "Delete request"
 
 [node name="Control" type="Control" parent="Root/Requests List/VBoxContainer/DetailsScroll/Details Container/ScrollContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
@@ -2182,7 +2420,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4295.68024145506 / 7178"
+text = "4294.72587071416 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
