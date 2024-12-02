@@ -154,13 +154,12 @@ placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
 
-[node name="Refresh" type="TextureButton" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
+[node name="Refresh" type="Button" parent="Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
-theme = ExtResource("1_bx3v4")
-texture_normal = ExtResource("6_aoov5")
-ignore_texture_size = true
-stretch_mode = 5
+icon = ExtResource("6_aoov5")
+icon_alignment = 1
+expand_icon = true
 
 [node name="Generate Content" type="VBoxContainer" parent="Root/SideMenu/SideMenuScroll/SideMenu"]
 layout_mode = 2
