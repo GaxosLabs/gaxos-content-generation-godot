@@ -9,10 +9,10 @@ func _ready() -> void:
 	_refresh_code()
 		
 func _generate() -> void:
-	$"VBoxContainer/Generate Button".disabled = true
+	var b = Scheduler.temporarily_disable_button($"VBoxContainer/Generate Button")
 	await self._request_generation()
 	generated.emit()
-	$"VBoxContainer/Generate Button".disabled = false
+	Scheduler.enable_button(b)
 	
 func _refresh_code() -> void:
 	$VBoxContainer/Code.text = self._get_code()

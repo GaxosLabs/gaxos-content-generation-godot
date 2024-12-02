@@ -10,6 +10,6 @@ func _ready() -> void:
 func _pressed() -> void:
 	if prompt_field.text == "":
 		return
-	$".".disabled = true
+	var b = Scheduler.temporarily_disable_button($".")
 	prompt_field.text = await GaxosContentGeneration.improve_prompt(prompt_field.text, generator_name)
-	$".".disabled = false
+	Scheduler.enable_button(b)

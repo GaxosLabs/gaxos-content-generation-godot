@@ -38,13 +38,15 @@ func _ready() -> void:
 	$"Root/Basic Examples/TabContainer/Image To Image".generated.connect(_refreshList)
 	$"Root/Basic Examples/TabContainer/Text To Image".generated.connect(_refreshList)
 	$"Root/Basic Examples/TabContainer/Masking".generated.connect(_refreshList)
+
+var disabledButton
 	
 func _refresingStats() -> void:
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".disabled = true
+	disabledButton = Scheduler.temporarily_disable_button($"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh")
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = ""
 	
 func _statsRefreshed(stats: Dictionary) -> void:
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".disabled = false
+	Scheduler.enable_button(disabledButton)
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = "%.2f / %.2f" % [(stats["credits"]["total"] - stats["credits"]["used"]), (stats["credits"]["total"])]
 
 func _refreshList() -> void:

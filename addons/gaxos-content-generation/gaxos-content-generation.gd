@@ -6,7 +6,8 @@ var main_panel_instance: Control
 
 func _enter_tree() -> void:
 	add_autoload_singleton("GaxosContentGeneration", "res://addons/gaxos-content-generation/GaxosContentGeneration.tscn")
-	
+	add_autoload_singleton("Scheduler", "res://addons/gaxos-content-generation/window/Scheduler.gd")
+
 	main_panel_instance = MainPanel.instantiate()
 	EditorInterface.get_editor_main_screen().add_child(main_panel_instance)
 	_make_visible(false)

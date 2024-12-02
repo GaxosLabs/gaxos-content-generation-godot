@@ -149,7 +149,7 @@ theme = ExtResource("1_bx3v4")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4294.73 / 7178.00"
+text = "99670.23 / 100020.00"
 placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
@@ -1560,6 +1560,8 @@ text = "await GaxosContentGeneration.request_generation(
 	model = \"dall-e-2\",
 	n = 1,
 	size = \"512x512\",
+	image = \"<base 64 image>\",
+	mask = \"<base 64 mask>\",
 },
 {
 	improve_prompt = false,
@@ -1799,6 +1801,7 @@ size_flags_vertical = 3
 theme = ExtResource("1_bx3v4")
 
 [node name="Requests List" type="VBoxContainer" parent="Root"]
+visible = false
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -1915,6 +1918,7 @@ horizontal_alignment = 1
 layout_mode = 2
 
 [node name="DetailsScroll" type="ScrollContainer" parent="Root/Requests List/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 
@@ -2347,7 +2351,6 @@ editable = false
 scroll_smooth = true
 
 [node name="Configuration" type="VBoxContainer" parent="Root"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
@@ -2399,7 +2402,7 @@ text = "API Key"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "rHXpn3X0VaWBajN73yu41gQccVMDg13WAt4Pwnrk"
+text = "ENlcDwN2kddoFAvSCIG4fgt64w7XndGSI4r8PGtW"
 
 [node name="Refresh" type="Button" parent="Root/Configuration/Contents"]
 layout_mode = 2
@@ -2420,7 +2423,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "4294.72587071416 / 7178"
+text = "99670.2265418167 / 100020"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -2437,7 +2440,7 @@ text = "Storage"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "16318716393 / 16642998272"
+text = "10485760519676172 / 10485760536870912"
 editable = false
 
 [node name="Requests Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -2454,5 +2457,5 @@ text = "Requests"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "597527 / 600100"
+text = "9999821 / 10000100"
 editable = false

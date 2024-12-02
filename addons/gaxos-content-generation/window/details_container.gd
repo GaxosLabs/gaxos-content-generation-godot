@@ -50,13 +50,13 @@ func showRequest(request: Dictionary, refresh: Callable) -> void:
 	self.show()
 
 func _refreshThis() -> void:
-	$Refresh.disabled = true
+	var b = Scheduler.temporarily_disable_button($Refresh)
 	var updatedRequest = await GaxosContentGeneration.get_request(str(_request["id"]))
-	$Refresh.disabled = false
+	Scheduler.enable_button(b)
 	self.showRequest(updatedRequest, self._refresh)
 
 func _deleteRequest() -> void:
-	$ScrollContainer/VBoxContainer/DeleteButton.disabled = true
+	var b = Scheduler.temporarily_disable_button($ScrollContainer/VBoxContainer/DeleteButton)
 	await GaxosContentGeneration.delete_request(str(_request["id"]))
-	$ScrollContainer/VBoxContainer/DeleteButton.disabled = false
+	Scheduler.enable_button(b)
 	_refresh.call()
