@@ -6,7 +6,7 @@ var subwindows: Array[Control]
 func _enter_tree() -> void:
 	subwindows = [
 		$Root/Gaxos, $"Root/Dall-E", $"Root/Stability AI", $"Root/Meshy",
-		$Root/Suno, $"Root/Eleven Labs", 
+		$"Root/Eleven Labs", 
 		$"Root/Multiple Text To Image", $"Root/Multiple Masking",
 		$"Root/Requests List", $"Root/Favorites List",
 		$"Root/Basic Examples",
@@ -20,7 +20,6 @@ func _ready() -> void:
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators/DallE".pressed.connect(func (): self._show_subwindow(1))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators/Stability".pressed.connect(func (): self._show_subwindow(2))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators/Meshy".pressed.connect(func (): self._show_subwindow(3))
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators/Suno".pressed.connect(func (): self._show_subwindow(4))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Content/Generators/ElevenLabs".pressed.connect(func (): self._show_subwindow(5))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators/Multi Text To Image".pressed.connect(func (): self._show_subwindow(6))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators/Multi Masking".pressed.connect(func (): self._show_subwindow(7))

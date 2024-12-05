@@ -19,8 +19,6 @@ func showRequest(request: Dictionary, refresh: Callable) -> void:
 		$HBoxContainer/Icon.texture = load("res://addons/gaxos-content-generation/window/Meshy.png")
 	elif "gaxos" in request["generator"]:
 		$HBoxContainer/Icon.texture = load("res://addons/gaxos-content-generation/window/Gaxos Labs AI.png")
-	elif "suno" in request["generator"]:
-		$HBoxContainer/Icon.texture = load("res://addons/gaxos-content-generation/window/Suno.png")
 	elif "elevenlabs" in request["generator"]:
 		$HBoxContainer/Icon.texture = load("res://addons/gaxos-content-generation/window/Eleven Labs.png")
 	
