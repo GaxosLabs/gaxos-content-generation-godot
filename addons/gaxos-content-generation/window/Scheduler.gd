@@ -11,7 +11,7 @@ func schedule(function: Callable, delaySeconds: float):
 
 func temporarily_disable_button(button: BaseButton):
 	button.disabled = true
-	var timer = Scheduler.schedule(func (): button.disabled = false, 5)
+	var timer = self.schedule(func (): button.disabled = false, 5)
 	return [button, timer]
 
 func enable_button(buttonAndTimer):
