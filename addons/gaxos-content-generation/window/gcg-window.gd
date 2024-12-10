@@ -8,7 +8,7 @@ func _enter_tree() -> void:
 		$Root/Gaxos, $"Root/Dall-E", $"Root/Stability AI", $"Root/Meshy",
 		$"Root/Eleven Labs", 
 		$"Root/Multiple Text To Image", $"Root/Multiple Masking",
-		$"Root/Requests List", $"Root/Favorites List",
+		$"Root/Requests List", $"Root/Requests List",
 		$"Root/Basic Examples",
 		$Root/Configuration
 	];
@@ -24,9 +24,8 @@ func _ready() -> void:
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators/Multi Text To Image".pressed.connect(func (): self._show_subwindow(6))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Generate Multiple Content/Generators/Multi Masking".pressed.connect(func (): self._show_subwindow(7))
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Requests List/Button".pressed.connect(func (): self._show_subwindow(8))
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Favorites List/Button".pressed.connect(func (): self._show_subwindow(9))
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples/Button".pressed.connect(func (): self._show_subwindow(10))
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Settings/Button".pressed.connect(func (): self._show_subwindow(11))
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Basic Examples/Button".pressed.connect(func (): self._show_subwindow(9))
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Settings/Button".pressed.connect(func (): self._show_subwindow(10))
 	
 	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh".pressed.connect(func (): $Root/Configuration/Contents.refresh())
 	$Root/Configuration/Contents.refreshing.connect(_refresingStats)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=48 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Theme" uid="uid://uld1dockdeh6" path="res://addons/gaxos-content-generation/window/gaxos.tres" id="1_bx3v4"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
@@ -13,21 +13,18 @@
 [ext_resource type="Texture2D" uid="uid://desdyd33uf6vr" path="res://addons/gaxos-content-generation/window/Stability AI.png" id="6_xvpw1"]
 [ext_resource type="Texture2D" uid="uid://guug1r165o02" path="res://addons/gaxos-content-generation/window/Meshy.png" id="7_j3ipm"]
 [ext_resource type="Texture2D" uid="uid://dkharlfh6t646" path="res://addons/gaxos-content-generation/window/Dall-E - blue.png" id="7_oekmt"]
-[ext_resource type="Texture2D" uid="uid://ban71l2mn4nhp" path="res://addons/gaxos-content-generation/window/Suno.png" id="8_cv0ey"]
 [ext_resource type="Texture2D" uid="uid://dy0exqhtp0vbe" path="res://addons/gaxos-content-generation/window/Eleven Labs.png" id="9_3r7qk"]
 [ext_resource type="Texture2D" uid="uid://dqj8js0fau27e" path="res://addons/gaxos-content-generation/window/Stability AI - blue.png" id="9_os25a"]
 [ext_resource type="Texture2D" uid="uid://bmcmogkyftg10" path="res://addons/gaxos-content-generation/window/Multiple Text To Image.png" id="10_tpjbx"]
 [ext_resource type="Texture2D" uid="uid://cu5031pi7wah7" path="res://addons/gaxos-content-generation/window/Meshy - blue.png" id="11_dpmk4"]
 [ext_resource type="Texture2D" uid="uid://g43l6qfkdd8n" path="res://addons/gaxos-content-generation/window/Multiple Masking.png" id="11_tsrcb"]
 [ext_resource type="Texture2D" uid="uid://c6vvo7gl2wg4q" path="res://addons/gaxos-content-generation/window/Basic Examples.png" id="12_67rai"]
-[ext_resource type="Texture2D" uid="uid://c0iq4r2otl3aw" path="res://addons/gaxos-content-generation/window/Suno - blue.png" id="13_ew45x"]
 [ext_resource type="Texture2D" uid="uid://dq1mh4c1uy77" path="res://addons/gaxos-content-generation/window/Configuration.png" id="13_wne1l"]
 [ext_resource type="Texture2D" uid="uid://h3wqtjfailce" path="res://addons/gaxos-content-generation/window/Eleven Labs - blue.png" id="15_mbxyg"]
 [ext_resource type="Texture2D" uid="uid://8xj255qnwpbk" path="res://addons/gaxos-content-generation/window/Multiple Text To Image - blue.png" id="17_jfbjo"]
 [ext_resource type="Texture2D" uid="uid://dlyec1w4asblb" path="res://addons/gaxos-content-generation/window/Multiple Masking - blue.png" id="19_1xhha"]
 [ext_resource type="Texture2D" uid="uid://deb1glljwq5wd" path="res://addons/gaxos-content-generation/window/Gaxos Labs AI.png" id="22_mk8tw"]
 [ext_resource type="Texture2D" uid="uid://dx8xqucjb1mlb" path="res://addons/gaxos-content-generation/window/Requests List.png" id="23_f4h3q"]
-[ext_resource type="Texture2D" uid="uid://377gowrkwa0x" path="res://addons/gaxos-content-generation/window/Favorites List.png" id="24_2ewli"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gaxos_text_to_image.gd" id="26_7tycc"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/requests_list.gd" id="27_m4e82"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/improve_prompt.gd" id="28_4q36b"]
@@ -52,8 +49,29 @@ font_color = Color(0, 0.945098, 1, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_ur7vq"]
 font_color = Color(1, 0.229536, 0.174185, 1)
 
+[sub_resource type="Theme" id="Theme_5n75b"]
+resource_local_to_scene = true
+default_font = ExtResource("2_jpljm")
+
+[sub_resource type="Theme" id="Theme_baqwx"]
+resource_local_to_scene = true
+default_font = ExtResource("2_jpljm")
+
+[sub_resource type="Theme" id="Theme_ysosu"]
+resource_local_to_scene = true
+default_font = ExtResource("2_jpljm")
+
+[sub_resource type="Theme" id="Theme_iexj0"]
+resource_local_to_scene = true
+default_font = ExtResource("2_jpljm")
+
+[sub_resource type="Theme" id="Theme_f2xqv"]
+resource_local_to_scene = true
+default_font = ExtResource("2_jpljm")
+
 [node name="Gaxos Content Generation" type="Control"]
 clip_contents = true
+custom_minimum_size = Vector2(400, 500)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 1425.0
@@ -149,7 +167,7 @@ theme = ExtResource("1_bx3v4")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "99670.23 / 100020.00"
+text = "99542.39 / 100020.00"
 placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
@@ -240,8 +258,6 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 toggle_mode = true
 button_group = ExtResource("4_xwa81")
-texture_normal = ExtResource("8_cv0ey")
-texture_pressed = ExtResource("13_ew45x")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -822,7 +838,7 @@ theme_override_constants/separation = 10
 
 [node name="SelectMask" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = ExtResource("1_bx3v4")
+theme = SubResource("Theme_5n75b")
 label = "Image:"
 button_label = "Select image"
 
@@ -1341,7 +1357,7 @@ theme_override_constants/separation = 10
 
 [node name="SelectImage" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = ExtResource("1_bx3v4")
+theme = SubResource("Theme_baqwx")
 label = "Image:"
 button_label = "Select image"
 
@@ -1355,7 +1371,7 @@ horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = ExtResource("1_bx3v4")
+theme = SubResource("Theme_ysosu")
 label = "Mask:"
 button_label = "Select mask"
 
@@ -1661,7 +1677,6 @@ theme = ExtResource("1_bx3v4")
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
-texture = ExtResource("8_cv0ey")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="Root/Suno/Header"]
@@ -2036,44 +2051,6 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("1_bx3v4")
 
-[node name="Favorites List" type="VBoxContainer" parent="Root"]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_bx3v4")
-
-[node name="Header" type="HBoxContainer" parent="Root/Favorites List"]
-layout_mode = 2
-theme = ExtResource("1_bx3v4")
-
-[node name="Image" type="TextureRect" parent="Root/Favorites List/Header"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme = ExtResource("1_bx3v4")
-texture = ExtResource("24_2ewli")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="Root/Favorites List/Header"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = ExtResource("1_bx3v4")
-text = "Favorites Lists"
-label_settings = ExtResource("4_wm25m")
-horizontal_alignment = 2
-vertical_alignment = 1
-
-[node name="Separator" type="TextureRect" parent="Root/Favorites List"]
-custom_minimum_size = Vector2(0, 10)
-layout_mode = 2
-theme = ExtResource("1_bx3v4")
-texture = ExtResource("3_r04pj")
-expand_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="Root/Favorites List"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("1_bx3v4")
-
 [node name="Basic Examples" type="VBoxContainer" parent="Root"]
 visible = false
 layout_mode = 2
@@ -2214,7 +2191,7 @@ horizontal_alignment = 2
 
 [node name="SelectImage" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = ExtResource("1_bx3v4")
+theme = SubResource("Theme_iexj0")
 label = "Image:"
 button_label = "Select image"
 
@@ -2299,7 +2276,7 @@ horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = ExtResource("1_bx3v4")
+theme = SubResource("Theme_f2xqv")
 label = "Mask:"
 button_label = "Select mask"
 
@@ -2350,6 +2327,7 @@ editable = false
 scroll_smooth = true
 
 [node name="Configuration" type="VBoxContainer" parent="Root"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
@@ -2422,7 +2400,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "99670.2265418167 / 100020"
+text = "99542.3865418167 / 100020"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
