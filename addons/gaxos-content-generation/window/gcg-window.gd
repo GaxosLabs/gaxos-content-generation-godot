@@ -41,7 +41,7 @@ var disabledButton
 	
 func _refresingStats() -> void:
 	disabledButton = Scheduler.temporarily_disable_button($"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Refresh")
-	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = ""
+	$"Root/SideMenu/SideMenuScroll/SideMenu/Credits/Credits container/Credits Text Box".text = "..."
 	
 func _statsRefreshed(stats: Dictionary) -> void:
 	Scheduler.enable_button(disabledButton)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://db6gkh1ot38m6"]
+[gd_scene load_steps=49 format=3 uid="uid://db6gkh1ot38m6"]
 
 [ext_resource type="Theme" uid="uid://uld1dockdeh6" path="res://addons/gaxos-content-generation/window/gaxos.tres" id="1_bx3v4"]
 [ext_resource type="Script" path="res://addons/gaxos-content-generation/window/gcg-window.gd" id="1_i1xbe"]
@@ -46,26 +46,32 @@ font = ExtResource("2_jpljm")
 font_size = 21
 font_color = Color(0, 0.945098, 1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_lf8dk"]
+font_size = 12
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(1, 1, 1, 0.286275)
+
 [sub_resource type="LabelSettings" id="LabelSettings_ur7vq"]
 font_color = Color(1, 0.229536, 0.174185, 1)
 
-[sub_resource type="Theme" id="Theme_5n75b"]
+[sub_resource type="Theme" id="Theme_7tyyc"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_baqwx"]
+[sub_resource type="Theme" id="Theme_8vhk1"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_ysosu"]
+[sub_resource type="Theme" id="Theme_ds2x1"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_iexj0"]
+[sub_resource type="Theme" id="Theme_8cvym"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_f2xqv"]
+[sub_resource type="Theme" id="Theme_j174o"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
@@ -129,6 +135,18 @@ layout_mode = 2
 theme = ExtResource("1_bx3v4")
 texture = ExtResource("3_r04pj")
 
+[node name="Label" type="Label" parent="Root/SideMenu/Header/Title/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "v1.0"
+label_settings = SubResource("LabelSettings_lf8dk")
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="SideMenuScroll" type="ScrollContainer" parent="Root/SideMenu"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -167,7 +185,7 @@ theme = ExtResource("1_bx3v4")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "99542.39 / 100020.00"
+text = "99542.38 / 100020.00"
 placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
@@ -822,6 +840,7 @@ text = "await GaxosContentGeneration.request_generation(
 })"
 editable = false
 scroll_smooth = true
+scroll_vertical = 9.0
 
 [node name="Masking" type="ScrollContainer" parent="Root/Gaxos/TabContainer"]
 visible = false
@@ -838,7 +857,7 @@ theme_override_constants/separation = 10
 
 [node name="SelectMask" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_5n75b")
+theme = SubResource("Theme_7tyyc")
 label = "Image:"
 button_label = "Select image"
 
@@ -1135,6 +1154,7 @@ text = "await GaxosContentGeneration.request_generation(
 })"
 editable = false
 scroll_smooth = true
+scroll_vertical = 8.0
 
 [node name="Dall-E" type="VBoxContainer" parent="Root"]
 visible = false
@@ -1357,7 +1377,7 @@ theme_override_constants/separation = 10
 
 [node name="SelectImage" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_baqwx")
+theme = SubResource("Theme_8vhk1")
 label = "Image:"
 button_label = "Select image"
 
@@ -1371,7 +1391,7 @@ horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_ysosu")
+theme = SubResource("Theme_ds2x1")
 label = "Mask:"
 button_label = "Select mask"
 
@@ -1586,6 +1606,7 @@ text = "await GaxosContentGeneration.request_generation(
 })"
 editable = false
 scroll_smooth = true
+scroll_vertical = 2.0
 
 [node name="Stability AI" type="VBoxContainer" parent="Root"]
 visible = false
@@ -2156,6 +2177,7 @@ text = "await GaxosContentGeneration.request_generation(
 })"
 editable = false
 scroll_smooth = true
+scroll_vertical = 5.0
 
 [node name="Image To Image" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
 visible = false
@@ -2191,7 +2213,7 @@ horizontal_alignment = 2
 
 [node name="SelectImage" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_iexj0")
+theme = SubResource("Theme_8cvym")
 label = "Image:"
 button_label = "Select image"
 
@@ -2241,6 +2263,7 @@ text = "await GaxosContentGeneration.request_generation(
 })"
 editable = false
 scroll_smooth = true
+scroll_vertical = 8.0
 
 [node name="Masking" type="ScrollContainer" parent="Root/Basic Examples/TabContainer"]
 visible = false
@@ -2276,7 +2299,7 @@ horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_f2xqv")
+theme = SubResource("Theme_j174o")
 label = "Mask:"
 button_label = "Select mask"
 
@@ -2325,6 +2348,7 @@ text = "await GaxosContentGeneration.request_generation(
 })"
 editable = false
 scroll_smooth = true
+scroll_vertical = 7.0
 
 [node name="Configuration" type="VBoxContainer" parent="Root"]
 visible = false
@@ -2400,7 +2424,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "99542.3865418167 / 100020"
+text = "99542.3825418167 / 100020"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
