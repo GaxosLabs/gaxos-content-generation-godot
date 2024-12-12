@@ -6,6 +6,8 @@ var asset: Dictionary
 func initialize(asset: Dictionary) -> void:
 	self.asset = asset
 
+var disabledButton
+
 func _ready() -> void:
 	$TextureButton.texture_normal = null
 	$HTTPRequest.request_completed.connect(self._http_request_completed)
@@ -14,7 +16,7 @@ func _ready() -> void:
 		if error != OK:
 			push_error("An error occurred in the HTTP request.")
 	
-		$Button.disabled = true
+		disabledButton = Scheduler.temporarily_disable_button($Button)
 		$Button.pressed.connect(_save)
 		$FileDialog.file_selected.connect(_save_to_file)
 		$FileDialog.add_filter("*.png")
@@ -34,7 +36,7 @@ func _http_request_completed(result: int, response_code: int, headers: PackedStr
 
 	var texture = ImageTexture.create_from_image(_image)
 	$TextureButton.texture_normal = texture
-	$Button.disabled = false	
+	Scheduler.enable_button(disabledButton)
 	
 func _save():
 	$FileDialog.show()

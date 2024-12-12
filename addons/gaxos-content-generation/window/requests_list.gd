@@ -26,12 +26,12 @@ func _setSortBy(field: String) -> void:
 func refresh() -> void:
 	$"VBoxContainer/DetailsScroll".hide()
 	
-	$VBoxContainer/RefreshButton.disabled = true
+	var b = Scheduler.temporarily_disable_button($VBoxContainer/RefreshButton)
 	for n in $VBoxContainer/ScrollContainer/VBoxContainer/RequestsContainer.get_children():
 		$VBoxContainer/ScrollContainer/VBoxContainer/RequestsContainer.remove_child(n)
 		n.queue_free()
 	var requests = await GaxosContentGeneration.get_requests(100, 0, _sortBy, _sortByDirection == "desc", "godot_editor")
-	$VBoxContainer/RefreshButton.disabled = false
+	Scheduler.enable_button(b)
 	for request in requests:
 		var requestRow = load("res://addons/gaxos-content-generation/window/request_row.tscn").instantiate()
 		requestRow.initialize(request, func (): _showDetails(request))
