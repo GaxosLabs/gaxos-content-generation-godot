@@ -55,23 +55,23 @@ outline_color = Color(1, 1, 1, 0.286275)
 [sub_resource type="LabelSettings" id="LabelSettings_ur7vq"]
 font_color = Color(1, 0.229536, 0.174185, 1)
 
-[sub_resource type="Theme" id="Theme_7tyyc"]
+[sub_resource type="Theme" id="Theme_rikd2"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_8vhk1"]
+[sub_resource type="Theme" id="Theme_k70hd"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_ds2x1"]
+[sub_resource type="Theme" id="Theme_aacne"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_8cvym"]
+[sub_resource type="Theme" id="Theme_icucw"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
-[sub_resource type="Theme" id="Theme_j174o"]
+[sub_resource type="Theme" id="Theme_61cxd"]
 resource_local_to_scene = true
 default_font = ExtResource("2_jpljm")
 
@@ -185,7 +185,7 @@ theme = ExtResource("1_bx3v4")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "99542.38 / 100020.00"
+text = "4189.24 / 7178.00"
 placeholder_text = "Credits"
 editable = false
 scroll_fit_content_height = true
@@ -857,7 +857,7 @@ theme_override_constants/separation = 10
 
 [node name="SelectMask" parent="Root/Gaxos/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_7tyyc")
+theme = SubResource("Theme_rikd2")
 label = "Image:"
 button_label = "Select image"
 
@@ -1377,7 +1377,7 @@ theme_override_constants/separation = 10
 
 [node name="SelectImage" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_8vhk1")
+theme = SubResource("Theme_k70hd")
 label = "Image:"
 button_label = "Select image"
 
@@ -1391,7 +1391,7 @@ horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Dall-E/TabContainer/In Painting/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_ds2x1")
+theme = SubResource("Theme_aacne")
 label = "Mask:"
 button_label = "Select mask"
 
@@ -2213,7 +2213,7 @@ horizontal_alignment = 2
 
 [node name="SelectImage" parent="Root/Basic Examples/TabContainer/Image To Image/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_8cvym")
+theme = SubResource("Theme_icucw")
 label = "Image:"
 button_label = "Select image"
 
@@ -2299,7 +2299,7 @@ horizontal_alignment = 2
 
 [node name="SelectMask" parent="Root/Basic Examples/TabContainer/Masking/VBoxContainer" instance=ExtResource("33_kie62")]
 layout_mode = 2
-theme = SubResource("Theme_j174o")
+theme = SubResource("Theme_61cxd")
 label = "Mask:"
 button_label = "Select mask"
 
@@ -2403,7 +2403,7 @@ text = "API Key"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "ENlcDwN2kddoFAvSCIG4fgt64w7XndGSI4r8PGtW"
+text = "jTnWuyZyPt0V8qC3mSD4TJLe141mQvD2hUn6FGHi"
 
 [node name="Refresh" type="Button" parent="Root/Configuration/Contents"]
 layout_mode = 2
@@ -2424,7 +2424,7 @@ text = "Credits"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "99542.3825418167 / 100020"
+text = "4189.24278492922 / 7178"
 editable = false
 
 [node name="Storage Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -2441,7 +2441,7 @@ text = "Storage"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "10485760519676172 / 10485760536870912"
+text = "16318716393 / 16642998272"
 editable = false
 
 [node name="Requests Container" type="HBoxContainer" parent="Root/Configuration/Contents"]
@@ -2458,5 +2458,5 @@ text = "Requests"
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_bx3v4")
-text = "9999821 / 10000100"
+text = "597527 / 600100"
 editable = false

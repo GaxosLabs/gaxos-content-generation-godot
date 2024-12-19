@@ -12,7 +12,7 @@ func initialize(request: Dictionary, onClick: Callable):
 	else:
 		$Completed.text = "---"
 		$"Time taken".text = "%.f seconds" % (Time.get_unix_time_from_system() - request["created_at"])
-	$Cost.text = str(request["deducted_credits"])
+	$Cost.text = str(request["deducted_topup_credits"] + request["deducted_subscription_credits"])
 	$Status.text = str(request["status"])
 	
 	$Id.pressed.connect(onClick)

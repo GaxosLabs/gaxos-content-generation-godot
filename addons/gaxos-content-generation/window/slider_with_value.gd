@@ -6,8 +6,10 @@ func _ready() -> void:
 	$TextEdit.text_changed.connect(_text_changed)
 	_refresh_text($HSlider.value)
 
-func _text_changed(v: String) -> void:
-	print(v)
+func _text_changed() -> void:
+	var value = float($TextEdit.text)
+	$HSlider.value = value
+	
 	
 @export var numberOfDecimals: int = 0
 
